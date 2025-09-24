@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+
+    <!-- ================= TOP NAVIGATION BAR ================= -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="30" styleClass="navbar">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+
+            <!-- Logo -->
+            <Label styleClass="logo" text="Haritha Connect" />
+
+            <Pane HBox.hgrow="ALWAYS" /> <!-- Push nav items to right -->
+
+            <!-- Navigation Buttons -->
+            <Button onAction="#goHome" styleClass="nav-button" text="Home" />
+            <Button onAction="#goAbout" styleClass="nav-button" text="About" />
+            <Button onAction="#goLogin" styleClass="nav-button" text="Login" />
+            <Button onAction="#goContact" styleClass="nav-button" text="Contact" />
+            <Button onAction="#goSignup" styleClass="get-started-button" text="Get Started" />
+        </HBox>
+    </top>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <center>
+        <VBox alignment="CENTER" spacing="40" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" spacing="15">
+                <Label styleClass="main-title" text="Smart Waste Management for a Cleaner Tomorrow" />
+                <Label styleClass="subtitle" text="Connecting Homes, Kudumbasree Workers, and Panchayat for a sustainable future" />
+                <HBox alignment="CENTER" spacing="20">
+                    <Button onAction="#goLogin" styleClass="primary-button" text="Login Now" />
+                    <Button onAction="#goAbout" styleClass="secondary-button" text="Learn More" />
+                </HBox>
+            </VBox>
+
+            <!-- Why Haritha Connect Section -->
+            <VBox alignment="CENTER" spacing="20">
+                <Label styleClass="section-title" text="Why Haritha Connect?" />
+                <HBox alignment="CENTER" spacing="40">
+                    <VBox alignment="CENTER" onMouseEntered="#hoverCard" onMouseExited="#unhoverCard" spacing="10" styleClass="card">
+                        <Label styleClass="card-title" text="Doorstep Pickup Scheduling" />
+                        <Label text="Schedule waste pickups easily from your home." textAlignment="CENTER" wrapText="true" />
+                    </VBox>
+                    <VBox alignment="CENTER" onMouseEntered="#hoverCard" onMouseExited="#unhoverCard" spacing="10" styleClass="card">
+                        <Label styleClass="card-title" text="Report and Track Dumps" />
+                        <Label text="Report illegal dumps and track their status." textAlignment="CENTER" wrapText="true" />
+                    </VBox>
+                    <VBox alignment="CENTER" onMouseEntered="#hoverCard" onMouseExited="#unhoverCard" spacing="10" styleClass="card">
+                        <Label styleClass="card-title" text="Clean Streets and E-Waste Centres" />
+                        <Label text="Find e-waste centers and join clean street initiatives." textAlignment="CENTER" wrapText="true" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center> 
+
+    <!-- ================= FOOTER ================= -->
+    <bottom>
+        <HBox styleClass="footer" spacing="50" alignment="CENTER">
+            <Label text="Quick Links" styleClass="footer-text"/>
+            <Button text="Privacy Policy" styleClass="footer-link"/>
+            <Label text="Email: support@Service" styleClass="footer-text"/>
+            <Label text="Copyright © 2025 Connect" styleClass="footer-text"/>
+            <Label text="Phone: +91-XXXXXXXXXX" styleClass="footer-text"/>
+        </HBox>
+    </bottom>    
+</BorderPane>
