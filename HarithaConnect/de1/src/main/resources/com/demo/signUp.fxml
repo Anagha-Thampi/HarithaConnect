@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      alignment="CENTER"
+      spacing="15"
+      prefWidth="500" prefHeight="700"
+      style="-fx-background-color: linear-gradient(to bottom, #c8e6c9, #a5d6a7);">
+
+    <!-- Logo / App Name -->
+    <Text text="Haritha Connect"
+          style="-fx-font-size:22; -fx-font-weight:bold; -fx-fill:#2E7D32"/>
+
+    <Text text="Create Your Account"
+          style="-fx-font-size:20; -fx-font-weight:bold"/>
+
+    <Text text="Register to schedule pickups, report dumps, and track cleanliness in your area"
+          wrappingWidth="400"/>
+
+    <!-- White Card Box -->
+    <VBox spacing="10"
+          alignment="CENTER"
+          maxWidth="350"
+          style="-fx-background-color:white; -fx-background-radius:15;"
+          VBox.margin="20">
+        <children>
+            <Label text="House Number"/>
+            <TextField promptText="Enter house number"/>
+
+            <Label text="Full Name"/>
+            <TextField promptText="Enter your name"/>
+
+            <Label text="Residential Address"/>
+            <TextField promptText="Enter your address"/>
+
+            <Label text="Mobile Number"/>
+            <TextField promptText="+91 XXXXX XXXXX"/>
+
+            <Label text="Email (Optional)"/>
+            <TextField promptText="Enter email"/>
+
+            <Label text="Password"/>
+            <PasswordField promptText="Create password"/>
+
+            <Label text="Confirm Password"/>
+            <PasswordField promptText="Re-enter password"/>
+
+            <Button text="Create Account"
+                    prefWidth="150"
+                    style="-fx-background-color:#4CAF50; -fx-text-fill:white; -fx-font-weight:bold; -fx-background-radius:20;"/>
+
+            <HBox alignment="CENTER">
+                <children>
+                    <Label text="Already have an account?"/>
+                    <Hyperlink text="Login Here"/>
+                </children>
+            </HBox>
+        </children>
+    </VBox>
+</VBox>

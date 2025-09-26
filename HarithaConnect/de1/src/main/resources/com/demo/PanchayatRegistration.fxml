@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" prefWidth="1000.0" prefHeight="700.0"
+            style="-fx-background-color: linear-gradient(to bottom, #d9ead3, #b6d7a8);">
+
+    <!-- App Title -->
+    <top>
+        <VBox alignment="CENTER" spacing="10">
+            <BorderPane.margin>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </BorderPane.margin>
+            <Label text="🌱 Haritha Connect"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" />
+        </VBox>
+    </top>
+
+    <!-- Main Form Section -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="18">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Centered Heading -->
+            <Label text="Create Your Account"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: black;"
+                   alignment="CENTER"/>
+            <Label text="Create your account to oversee complaints, dumps, and street cleanliness reports."
+                   wrapText="true"
+                   style="-fx-font-size: 13px; -fx-text-fill: #444;"
+                   alignment="CENTER"/>
+
+            <!-- Form Container -->
+            <GridPane hgap="15" vgap="15" style="-fx-background-color: white; -fx-background-radius: 12px;">
+                <padding>
+                    <Insets top="25" right="25" bottom="25" left="25"/>
+                </padding>
+
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="200"/>
+                    <ColumnConstraints halignment="LEFT" minWidth="320"/>
+                </columnConstraints>
+
+                <!-- Full Name -->
+                <Label text="Full Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField promptText="Enter official name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Panchayat ID -->
+                <Label text="Panchayat ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField promptText="Enter Panchayat ID" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- Designation -->
+                <Label text="Designation / Role:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField promptText="Enter your designation" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <!-- Official Email -->
+                <Label text="Official Email Address:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField promptText="Enter your official email" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <!-- Mobile Number -->
+                <Label text="Mobile Number (Optional):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField promptText="+91 XXXXX XXXXX" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <!-- Office Address -->
+                <Label text="Office Address:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField promptText="Enter office address" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <!-- Password -->
+                <Label text="Password:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <PasswordField promptText="Create password" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                <!-- Confirm Password -->
+                <Label text="Confirm Password:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                <PasswordField promptText="Re-enter password" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Create Account Button -->
+            <Button text="Create Account"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30; -fx-background-radius: 20;" />
+
+            <!-- Login Link -->
+            <Hyperlink text="Already registered? [Login Here]" style="-fx-text-fill: #2d5a27; -fx-font-size: 13px;" />
+
+        </VBox>
+    </center>
+</BorderPane>

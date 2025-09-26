@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.demo.controllers.ReportDumpController"
+      spacing="15" alignment="CENTER" style="-fx-padding: 20;">
+    <Button fx:id="dashbutton" onAction="#goDash" alignment="TOP_LEFT" mnemonicParsing="false" text="Back" />
+    <Label text="Report Illegal Dump" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
+
+    <TextField fx:id="locationField" promptText="Enter location"/>
+    <TextArea fx:id="detailsField" promptText="Describe the issue"/>
+
+    <Button text="Submit Report" onAction="#submitReport"
+            style="-fx-background-color:#4CAF50; -fx-text-fill:white;"/>
+
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill:green;"/>
+</VBox>

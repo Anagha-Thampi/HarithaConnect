@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane prefWidth="1000.0" prefHeight="700.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.LocalDashController">
+
+<!-- Top header -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT"
+              style="-fx-background-color: white; -fx-padding: 12;">
+            <children>
+                <!-- Left: Logo -->
+                <HBox alignment="CENTER_LEFT" spacing="5" HBox.hgrow="ALWAYS">
+                    <ImageView fitHeight="25" fitWidth="25" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <!-- Replace with logo path -->
+                            <Image url="@logo.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Haritha " style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#222;"/>
+                    <Label text="Connect" style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:green;"/>
+                </HBox>
+
+                <!-- Right: Icons -->
+                <HBox alignment="CENTER_RIGHT" spacing="20">
+                    <ImageView fitHeight="22" fitWidth="22" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <!-- Replace with profile icon -->
+                            <Image url="@profile.png"/>
+                        </image>
+                    </ImageView>
+                    <ImageView fitHeight="22" fitWidth="22" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <!-- Replace with notification bell icon -->
+                            <Image url="@bell.png"/>
+                        </image>
+                    </ImageView>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
+
+
+<!-- Main content -->
+<center>
+    <VBox alignment="TOP_CENTER" spacing="20">
+        <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+        </padding>
+
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Dashboard Overview" />
+
+        <GridPane alignment="CENTER" hgap="30" vgap="30">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33" />
+                <ColumnConstraints percentWidth="33" />
+                <ColumnConstraints percentWidth="33" />
+            </columnConstraints>
+
+            <!-- Card 1: Schedule Pickup -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,3);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                    <image>
+                        <Image url="@sp.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Schedule Pickup" />
+                <Button onAction="#goToSchedulePickup" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Book Now" />
+            </VBox>
+
+            <!-- Card 2: Report Dump -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,3);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                    <image>
+                        <Image url="@dp.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Report Dump" />
+                <Button onAction="#goToReportDump" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Report Now" />
+            </VBox>
+
+            <!-- Card 3: View Cleanest Streets -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,3);" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                    <image>
+                        <Image url="@clea.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="View Cleanest Streets" />
+                <Button onAction="#goToLeaderboard" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="View Leaderboard" />
+            </VBox>
+
+            <!-- Card 4: Nearby E-Waste Centres -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,3);" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                    <image>
+                        <Image url="@Eceter.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Nearby E-Waste Centres" />
+                <Button onAction="#goToEwaste" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Find Centres" />
+            </VBox>
+
+            <!-- Card 5: Submit Complaint -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,3);" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                    <image>
+                        <Image url="@report.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Submit Complaint" />
+                <Button onAction="#goToComplaint" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="File Complaint" />
+            </VBox>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </VBox>
+</center>
+</BorderPane>

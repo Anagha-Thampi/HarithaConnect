@@ -1,0 +1,205 @@
+/* ===== NAVIGATION BAR ===== */
+.navbar {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.logo {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-text-fill: #2e7d32;
+}
+
+.get-started-button {
+    -fx-background-color: #2e7d32;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 6 15 6 15;
+    -fx-background-radius: 5;
+}
+
+.get-started-button:hover {
+    -fx-background-color: #1b5e20;
+}
+
+/* ===== MAIN SECTION ===== */
+.main-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.primary-button {
+    -fx-background-color: #2e7d32;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 6 15 6 15;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1b5e20;
+}
+
+.secondary-button {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-background-radius: 5;
+    -fx-padding: 6 15 6 15;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #dcdcdc;
+}
+
+/* ===== CARDS ===== */
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.card {
+    -fx-background-color: #ffffff;
+    -fx-padding: 15;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 1);
+    -fx-pref-width: 200;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+}
+
+.card:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
+
+.footer-button {
+    -fx-background-color: #2e7d32;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 6 15 6 15;
+}
+
+.footer-link {
+    -fx-text-fill: #2e7d32;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+.footer-text {
+    -fx-text-fill: #555555;
+    -fx-font-size: 12px;
+}
+
+* Center Layout */
+.login-selection-center {
+    -fx-padding: 30;
+    -fx-background-color: #eaf5e2;
+}
+
+/* Login Card */
+.login-card {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-pref-width: 250;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+/* Hover Effect */
+.login-card:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Card Title */
+.login-card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f4e2a;
+}
+
+/* Card Description */
+.login-card-description {
+    -fx-font-size: 12px;
+    -fx-text-fill: #555;
+    -fx-wrap-text: true;
+}
+
+/* Buttons inside cards */
+.login-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 6 12;
+    -fx-font-size: 12px;
+}
+.login-button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Footer */
+/* ========== FOOTER STYLES ========== */
+.footer {
+    -fx-padding: 15;
+    -fx-background-color: white;
+    -fx-alignment: center;
+    -fx-spacing: 50;
+}
+
+.footer-text {
+    -fx-text-fill: rgb(31, 129, 75);
+    -fx-font-size: 12px;
+}
+
+.footer-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(31, 129, 75);
+    -fx-underline: true;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.footer-link:hover {
+    -fx-text-fill: #a8d5a3;
+}
