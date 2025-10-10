@@ -12,16 +12,24 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefWidth="1000.0" prefHeight="700.0" style="-fx-background-color: linear-gradient(to bottom, #d9ead3, #b6d7a8);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, #d9ead3, #b6d7a8);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.WorkerRegistrationController">
 
     <!-- App Title -->
     <top>
-        <VBox alignment="CENTER" spacing="10">
-            <BorderPane.margin>
-                <Insets bottom="20" left="20" right="20" top="20" />
-            </BorderPane.margin>
-            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" text="🌱 Haritha Connect" />
-        </VBox>
+        <BorderPane>
+            <left>
+                <VBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" text="🌱 Haritha Connect" />
+                </VBox>
+            </left>
+            <right>
+                <!-- ✅ Home Button -->
+                <Button fx:id="homeButton" onAction="#goHome" style="-fx-background-color: #2d5a27; -fx-text-fill: white;                                -fx-background-radius: 20; -fx-font-weight: bold; -fx-padding: 5 20;" text="🏠 Home" />
+            </right>
+            <padding>
+                <Insets bottom="10" left="25" right="25" top="15" />
+            </padding>
+        </BorderPane>
     </top>
 
     <!-- Main Form Section -->
@@ -36,7 +44,7 @@
             <Label alignment="CENTER" style="-fx-font-size: 13px; -fx-text-fill: #444;" text="Sign up to manage time slots, update dump reports, and track pickups" wrapText="true" />
 
             <!-- Form Container -->
-            <GridPane hgap="15" style="-fx-background-color: white; -fx-background-radius: 12px;" vgap="15">
+            <GridPane hgap="15" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="591.0" style="-fx-background-color: white; -fx-background-radius: 12px;" vgap="15">
                 <padding>
                     <Insets bottom="25" left="25" right="25" top="25" />
                 </padding>
@@ -48,35 +56,35 @@
 
                 <!-- Full Name -->
                 <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField promptText="Enter your name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="fullNameField" promptText="Enter your name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <!-- Mobile Number -->
                 <Label text="Mobile Number:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField promptText="+91 XXXXX XXXXX" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="mobileField" promptText="+91 XXXXX XXXXX" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                 <!-- Email -->
                 <Label text="Email Address (Optional):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <TextField promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="emailField" promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                 <!-- Residential Address -->
                 <Label text="Residential Address:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <TextField promptText="Enter your address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="addressField" promptText="Enter your address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                 <!-- Ward/Area -->
                 <Label text="Ward / Area:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                <TextField promptText="Enter ward or area" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="wardField" promptText="Enter ward or area" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                 <!-- Worker ID -->
                 <Label text="Worker ID / Reg. Number:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                <TextField promptText="Enter worker ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField fx:id="workerIdField" promptText="Enter worker ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                 <!-- Password -->
                 <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                <PasswordField promptText="Create password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <PasswordField fx:id="passwordField"  promptText="Create password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                 <!-- Confirm Password -->
                 <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                <PasswordField promptText="Re-enter password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <PasswordField fx:id="confirmPasswordField" promptText="Re-enter password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
@@ -90,10 +98,10 @@
             </GridPane>
 
             <!-- Create Account Button -->
-            <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30; -fx-background-radius: 20;" text="Create Account" />
+            <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30; -fx-background-radius: 20;" text="Create Account" onAction="#handleCreateAccount" />
 
             <!-- Login Link -->
-            <Hyperlink style="-fx-text-fill: #2d5a27; -fx-font-size: 13px;" text="Already registered? [Login Here]" />
+            <Hyperlink onAction="#goToLogin" style="-fx-text-fill: #2d5a27; -fx-font-size: 13px;" text="Already registered? [Login Here]" />
 
         </VBox>
     </center>

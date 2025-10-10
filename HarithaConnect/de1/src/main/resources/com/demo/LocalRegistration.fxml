@@ -12,67 +12,78 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefWidth="1000.0" prefHeight="700.0" style="-fx-background-color: linear-gradient(to bottom, #d9ead3, #b6d7a8);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, #d9ead3, #b6d7a8);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.LocalRegistrationController">
 
-<!-- Top Logo and App Name -->
-<top>
-    <VBox alignment="CENTER" spacing="10">
-        <BorderPane.margin>
-            <Insets bottom="20" left="20" right="20" top="20" />
-        </BorderPane.margin>
-        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" text="🌱 Haritha Connect" />
-    </VBox>
-</top>
+    <!-- Top Logo, App Name & Home Button -->
+    <top>
+        <BorderPane>
+            <left>
+                <VBox alignment="CENTER_LEFT" spacing="10" BorderPane.alignment="CENTER_LEFT">
+                    <BorderPane.margin>
+                        <Insets bottom="20" left="20" right="20" top="20" />
+                    </BorderPane.margin>
+                    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" text="🌱 Haritha Connect" />
+                </VBox>
+            </left>
+            <right>
+                <Button onAction="#goToHome" prefHeight="76.0" prefWidth="78.0" style="-fx-background-color: transparent; -fx-text-fill: #2d5a27;                                -fx-font-size: 14px; -fx-cursor: hand; -fx-font-weight: bold;                                -fx-padding: 5 10 5 10;" text="🏠 Home" />
+            </right>
+        </BorderPane>
+    </top>
 
-<!-- Center Form -->
-<center>
-    <VBox alignment="TOP_CENTER" spacing="15">
-        <padding>
-            <Insets bottom="20" left="20" right="20" top="20" />
-        </padding>
-
-        <!-- Title -->
-        <Label alignment="CENTER" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: black;" text="Create Your Account" />
-        <Label alignment="CENTER" style="-fx-font-size: 13px; -fx-text-fill: #444;" text="Register to schedule pickups, report dumps, and track cleanliness in your area" wrapText="true" />
-
-        <!-- Form Container -->
-        <GridPane hgap="15" style="-fx-background-color: white; -fx-background-radius: 12px;" vgap="15">
+    <!-- Center Form -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="15">
             <padding>
-                <Insets bottom="25" left="25" right="25" top="25" />
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" minWidth="150" />
-                <ColumnConstraints halignment="LEFT" minWidth="300" />
-            </columnConstraints>
+            <!-- Title -->
+            <Label alignment="CENTER" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: black;" text="Create Your Account" />
+            <Label alignment="CENTER" style="-fx-font-size: 13px; -fx-text-fill: #444;" text="Register to schedule pickups, report dumps, and track cleanliness in your area" wrapText="true" />
 
-            <!-- House Number -->
-            <Label text="House Number:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField promptText="Enter house number" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <!-- Form Container -->
+            <GridPane hgap="15" maxWidth="-Infinity" prefWidth="543.0" style="-fx-background-color: white; -fx-background-radius: 12px;" vgap="15">
+                <padding>
+                    <Insets bottom="25.0" left="30.0" right="25.0" top="25.0" />
+                </padding>
 
-            <!-- Full Name -->
-            <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField promptText="Enter your name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="150" />
+                    <ColumnConstraints halignment="LEFT" minWidth="300" />
+                </columnConstraints>
 
-            <!-- Residential Address -->
-            <Label text="Residential Address:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField promptText="Enter your complete address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <!-- House Number -->
+                <Label text="House Number:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="houseNumberField" promptText="Enter house number" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <!-- Mobile Number -->
-            <Label text="Mobile Number:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <TextField promptText="+91 XXXXX XXXXX" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <!-- Full Name -->
+                <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="fullNameField" promptText="Enter your name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <!-- Email Address -->
-            <Label text="Email Address (Optional):" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <TextField promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <!-- Username -->
+                <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="usernameField" promptText="Choose a username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <!-- Password -->
-            <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <PasswordField promptText="Create password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <!-- Residential Address -->
+                <Label text="Residential Address:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <TextField fx:id="addressField" promptText="Enter your complete address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-            <!-- Confirm Password -->
-            <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <PasswordField promptText="Re-enter password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <!-- Mobile Number -->
+                <Label text="Mobile Number:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <TextField fx:id="mobileField" promptText="+91 XXXXX XXXXX" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <!-- Email Address -->
+                <Label text="Email Address (Optional):" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <TextField fx:id="emailField" promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <!-- Password -->
+                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <PasswordField fx:id="passwordField" promptText="Create password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                <!-- Confirm Password -->
+                <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <PasswordField fx:id="confirmPasswordField" promptText="Re-enter password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
@@ -81,14 +92,15 @@
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />
+               <RowConstraints />
             </rowConstraints>
-        </GridPane>
+            </GridPane>
 
-        <!-- Create Account Button -->
-        <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;                            -fx-padding: 10 30; -fx-background-radius: 20;" text="Create Account" />
+            <!-- Create Account Button -->
+            <Button onAction="#handleCreateAccount" style="-fx-background-color: #4CAF50; -fx-text-fill: white;                            -fx-font-weight: bold; -fx-padding: 10 30;                            -fx-background-radius: 20;" text="Create Account" />
 
-        <!-- Login Redirect -->
-        <Hyperlink style="-fx-text-fill: #2d5a27; -fx-font-size: 13px;" text="Already have an account? [Login Here]" />
-    </VBox>
-</center>
+            <!-- Login Redirect -->
+            <Hyperlink onAction="#goToLogin" style="-fx-text-fill: #2d5a27; -fx-font-size: 13px;" text="Already have an account? [Login Here]" />
+        </VBox>
+    </center>
 </BorderPane>

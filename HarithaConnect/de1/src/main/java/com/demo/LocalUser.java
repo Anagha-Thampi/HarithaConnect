@@ -5,6 +5,10 @@ public class LocalUser extends User {
     public LocalUser(String username, String password) {
         super(username, password);
     }
+    @Override
+    public String getDataFileName() {
+        return "localuserdata.csv";
+    }
 
     public void selectWasteType(String type) {
         System.out.println("Selected waste type: " + type);

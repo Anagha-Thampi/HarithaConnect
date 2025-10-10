@@ -7,6 +7,10 @@ public class KudumbasreeWorker extends User {
     public KudumbasreeWorker(String username, String password) {
         super(username, password);
     }
+    @Override
+    public String getDataFileName() {
+        return "kudumbasreeuserdata.csv";
+    }
 
     public void viewRealTimeDumpReports() {
         System.out.println("Viewing real-time dump reports (worker)...");

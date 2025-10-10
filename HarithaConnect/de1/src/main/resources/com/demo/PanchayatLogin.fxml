@@ -53,7 +53,7 @@
                 <VBox alignment="CENTER" spacing="15" prefWidth="280">
                     <Label text="Welcome Panchayat User" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
 
-                    <TextField fx:id="usernameField" promptText="Username"
+                    <TextField fx:id="usernameField" promptText="Panchayat ID"
                                style="-fx-background-radius: 6; -fx-padding: 8;"/>
                     <PasswordField fx:id="passwordField" promptText="Password"
                                    style="-fx-background-radius: 6; -fx-padding: 8;"/>
@@ -68,8 +68,8 @@
                     </Button>
 
                     <HBox alignment="CENTER" spacing="15">
-                        <Hyperlink text="Create an Account"/>
-                        <Hyperlink text="Forgot Password?"/>
+                        <Hyperlink text="Create an Account" onAction="#goToRegister"/>
+                        <Hyperlink text="Forgot Password?" onAction="#goToForgotPassword"/>
                     </HBox>
                 </VBox>
             </StackPane>

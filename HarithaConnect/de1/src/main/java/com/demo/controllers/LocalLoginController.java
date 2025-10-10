@@ -42,6 +42,18 @@ public class LocalLoginController {
         }
     }
 
+    // Navigate to the Register Page
+    @FXML
+    private void goToRegister(ActionEvent event) throws IOException {
+        loadPage("/com/demo/LocalRegistration.fxml", "Register Account");
+    }
+
+    // Navigate to the Forgot Password Page
+    @FXML
+    private void goToForgotPassword(ActionEvent event) throws IOException {
+        loadPage("/com/demo/ForgotPassword.fxml", "Forgot Password");
+    }
+
     private void loadPage(String fxmlPath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));

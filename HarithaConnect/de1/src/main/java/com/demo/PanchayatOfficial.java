@@ -25,4 +25,8 @@ public class PanchayatOfficial extends User {
     public void reviewComplaints() {
         System.out.println("Reviewing complaints...");
     }
+    @Override
+    public String getDataFileName() {
+        return "panchayatuserdata.csv";
+    }
 }
