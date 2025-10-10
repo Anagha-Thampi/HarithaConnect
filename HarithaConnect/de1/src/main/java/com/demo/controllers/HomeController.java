@@ -34,11 +34,12 @@ public class HomeController {
         loadPage("/com/demo/LoginSelection.fxml", "Login");
     }
 
+
     // Navigate to Registration Page
     @FXML
     private void goToRegister() throws Exception {
         System.out.println("Home button clicked!");
-        //loadPage("/fxml/register.fxml", "Register");
+        loadPage("/com/demo/Registration.fxml", "Register");
     }
 
     @FXML
