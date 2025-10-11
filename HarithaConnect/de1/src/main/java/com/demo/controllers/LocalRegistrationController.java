@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 public class LocalRegistrationController {
 
@@ -44,6 +45,21 @@ public class LocalRegistrationController {
             return;
         }
         if(email.isEmpty()){email="nil";}
+
+
+        if (!isValidEmail(email)) {
+            showAlert(Alert.AlertType.ERROR,"Error", "Please enter a valid email address!");
+            return;
+        }
+
+        if (!isStrongPassword(password)) {
+            showAlert(Alert.AlertType.ERROR,"Weak Password",
+                    "Password must be at least 8 characters long and include:\n" +
+                            "• an uppercase letter\n• a lowercase letter\n• a number\n• a special character");
+            return;
+        }
+
+
 
         if (!password.equals(confirmPassword)) {
             showAlert(Alert.AlertType.ERROR, "Password Mismatch", "Passwords do not match.");
@@ -132,5 +148,21 @@ public class LocalRegistrationController {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return Pattern.matches(emailRegex, email);
+    }
+
+    private boolean isStrongPassword(String password) {
+        // At least one uppercase, one lowercase, one digit, one special char, 8+ length
+        String strongPassRegex =
+                "^(?=.*[0-9])" +           // digit
+                        "(?=.*[a-z])" +            // lowercase
+                        "(?=.*[A-Z])" +            // uppercase
+                        "(?=.*[@#$%^&+=!])" +      // special char
+                        "(?=\\S+$).{8,}$";         // no spaces + min 8 chars
+        return Pattern.matches(strongPassRegex, password);
     }
 }
