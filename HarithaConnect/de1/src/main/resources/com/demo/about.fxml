@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25">
+
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #e6f2e6;">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="Haritha Connect" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: #2e7d32;" text="Home" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: #2e7d32;" text="About" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: #2e7d32;" text="Login" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: #2e7d32;" text="Contact" />
+            <Button style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-background-radius: 5;" text="Get Started" />
+        </HBox>
+    </top>
+
+    <!-- Main Scrollable Content -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true">
+            <content>
+                <VBox alignment="TOP_CENTER" spacing="25" style="-fx-background-color: #f4f8f4;">
+                    <padding>
+                        <Insets bottom="30" left="40" right="40" top="30" />
+                    </padding>
+
+                    <!-- About Section -->
+                    <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 25;                                   -fx-background-radius: 10;                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <Text style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #2e7d32;" text="About Haritha Connect" />
+                        <Label style="-fx-text-fill: #333333;" text="Connecting Homes, Kudumbashree Workers and Panchayats for a Greener Tomorrow" wrapText="true" />
+                        <Separator />
+                        <Text style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-fill: #2e7d32;" text="Our Vision" />
+                        <Label text="To create a sustainable and transparent waste management ecosystem that empowers every citizen, workers, and helps Panchayats stay clean and healthy." wrapText="true" />
+                    </VBox>
+
+                    <!-- Features Section -->
+                    <HBox alignment="CENTER" prefHeight="120.0" prefWidth="805.0" spacing="20">
+                        <VBox alignment="CENTER" prefHeight="119.0" prefWidth="224.0" spacing="10" style="-fx-background-color: white; -fx-padding: 20;                                       -fx-background-radius: 10; -fx-pref-width: 180;">
+                            <Label style="-fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="♻ Smart Waste Collection" />
+                            <Label text="Residents can schedule and monitor dump pickups easily." wrapText="true" />
+                        </VBox>
+
+                        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 20;                                       -fx-background-radius: 10; -fx-pref-width: 180;">
+                            <Label style="-fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="🕒 Real-Time Tracking" />
+                            <Label text="Panchayats and workers can monitor and update collection in real-time." wrapText="true" />
+                        </VBox>
+
+                        <VBox alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="313.0" spacing="10" style="-fx-background-color: white; -fx-padding: 20;                                       -fx-background-radius: 10; -fx-pref-width: 180;">
+                            <Label maxWidth="-Infinity" prefHeight="18.0" prefWidth="170.0" style="-fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="🤝 Community Collaboration" />
+                            <Label text="Encouraging residents to work together for cleaner surroundings." wrapText="true" />
+                        </VBox>
+                    </HBox>
+
+                          <!-- Goals Section -->
+                    <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10;">
+                        <Text style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-fill: #2e7d32;" text="Our Goals for a Sustainable Future" />
+                        <Label style="-fx-font-weight: bold;" text="Why Haritha Connect?" />
+                        <Label text="✔ Eco-friendly digital waste management" />
+                        <Label text="✔ Transparent and real-time monitoring" />
+                        <Label text="✔ Easy access for residents and workers" />
+                        <Label text="✔ Supports local communities and sustainability" />
+                        <Separator />
+                        <Label text="⿡ Minimize uncollected waste in public areas" />
+                        <Label text="⿢ Empower Kudumbashree workers with digital tools" />
+                        <Label text="⿣ Improve communication with Panchayats" />
+                        <Label text="⿤ Promote recycling and proper e-waste disposal" />
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <!-- Footer Section (Fixed at Bottom) -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #2e7d32; -fx-padding: 10;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 12px;" text="Quick Links  |  Privacy Policy  |  Support  |  Phone: +91-XXXXXXXXXX" />
+        </HBox>
+    </bottom>
+</BorderPane>
