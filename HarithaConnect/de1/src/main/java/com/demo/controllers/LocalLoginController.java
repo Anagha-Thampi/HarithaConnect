@@ -51,7 +51,7 @@ public class LocalLoginController {
     // Navigate to the Forgot Password Page
     @FXML
     private void goToForgotPassword(ActionEvent event) throws IOException {
-        loadPage("/com/demo/ForgotPassword.fxml", "Forgot Password");
+        loadPage("/com/demo/forgotPassword.fxml", "Forgot Password");
     }
 
     private void loadPage(String fxmlPath, String title) {

@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.haritha.CleanestStreetsController">
+<BorderPane prefWidth="1000.0" prefHeight="700.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" >
 
     <!-- Top Navigation Bar -->
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #e6f2e6;">
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #f4f8f4;">
             <padding>
                 <Insets bottom="10" left="20" right="20" top="10" />
             </padding>
@@ -29,14 +29,13 @@
             <Pane HBox.hgrow="ALWAYS" />
 
             <Button style="-fx-background-color: transparent; -fx-font-size: 16px; -fx-text-fill: #2e7d32;" text="👤" />
-            <Button style="-fx-background-color: transparent; -fx-font-size: 16px; -fx-text-fill: #2e7d32;" text="🔔" />
             <Button style="-fx-background-color: transparent; -fx-text-fill: #2e7d32; -fx-font-size: 14px;" text="Logout" />
         </HBox>
     </top>
 
     <!-- Center Section -->
     <center>
-        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: #f4f8f4;">
+        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: #e6f2e6;">
             <padding>
                 <Insets bottom="30" left="40" right="40" top="30" />
             </padding>

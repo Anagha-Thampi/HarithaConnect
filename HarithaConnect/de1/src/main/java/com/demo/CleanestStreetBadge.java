@@ -1,25 +1,21 @@
 package com.demo;
 
-import javafx.beans.property.*;
-import java.time.LocalDate;
-
 public class CleanestStreetBadge {
-    private final StringProperty streetName;
-    private final ObjectProperty<LocalDate> weekOfRecognition;
+    private final String streetName;
+    private final String weekOfRecognition;
+    private final String issuedBy;
 
-    public CleanestStreetBadge(String streetName, LocalDate weekOfRecognition) {
-        this.streetName = new SimpleStringProperty(streetName);
-        this.weekOfRecognition = new SimpleObjectProperty<>(weekOfRecognition);
+    public CleanestStreetBadge(String streetName, String weekOfRecognition, String issuedBy) {
+        this.streetName = streetName;
+        this.weekOfRecognition = weekOfRecognition;
+        this.issuedBy = issuedBy;
     }
 
-    public StringProperty streetNameProperty() { return streetName; }
-    public ObjectProperty<LocalDate> weekOfRecognitionProperty() { return weekOfRecognition; }
-
-    public String getStreetName() { return streetName.get(); }
-    public LocalDate getWeekOfRecognition() { return weekOfRecognition.get(); }
+    public String getStreetName() { return streetName; }
+    public String getWeekOfRecognition() { return weekOfRecognition; }
+    public String getIssuedBy() { return issuedBy; }
 
     @Override
-    public String toString() {
-        return getStreetName() + " (Week of: " + getWeekOfRecognition() + ")";
-    }
+    public String toString() { return streetName + " (" + weekOfRecognition + ")"; }
 }
+

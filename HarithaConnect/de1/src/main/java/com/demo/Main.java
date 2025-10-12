@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/homepage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/demo/homepage.fxml"));
         primaryStage.setTitle("Haritha Connect");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

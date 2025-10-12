@@ -37,7 +37,7 @@ public class LocalDashController {
 
     @FXML
     private void goToLeaderboard() {
-        loadPage("/com/demo/Leaderboard.fxml", "Leaderboard");
+        loadPage("/com/demo/cleanest.fxml", "Leaderboard");
     }
 
     @FXML

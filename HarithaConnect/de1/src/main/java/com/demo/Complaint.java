@@ -1,29 +1,24 @@
 package com.demo;
 
-import java.time.LocalDateTime;
-
 public class Complaint {
-    private String description;
+    private final String complaintId;
+    private final String description;
     private String status;
-    private LocalDateTime dateFiled;
-    private String filedBy;
+    private final String submittedDate;
+    private final String submittedBy;
 
-    public Complaint(String description, String status, LocalDateTime dateFiled, String filedBy) {
+    public Complaint(String complaintId, String description, String status, String submittedDate, String submittedBy) {
+        this.complaintId = complaintId;
         this.description = description;
         this.status = status;
-        this.dateFiled = dateFiled;
-        this.filedBy = filedBy;
+        this.submittedDate = submittedDate;
+        this.submittedBy = submittedBy;
     }
 
+    public String getComplaintId() { return complaintId; }
     public String getDescription() { return description; }
     public String getStatus() { return status; }
-    public LocalDateTime getDateFiled() { return dateFiled; }
-    public String getFiledBy() { return filedBy; }
-
     public void setStatus(String status) { this.status = status; }
-
-    @Override
-    public String toString() {
-        return "Complaint: " + description + " (" + status + ")";
-    }
+    public String getSubmittedDate() { return submittedDate; }
+    public String getSubmittedBy() { return submittedBy; }
 }

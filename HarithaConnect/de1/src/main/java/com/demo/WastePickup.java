@@ -1,32 +1,34 @@
 package com.demo;
 
-import java.time.LocalDateTime;
-
 public class WastePickup {
-    private String wasteType;
-    private LocalDateTime scheduledDate;
-    private String location;
+    private String pickupId;
+    private final String wasteType;
+    private String timeSlot;
+    private final String location;
     private String status;
-    private boolean recurring;
+    private String assignedWorker;
 
-    public WastePickup(String wasteType, LocalDateTime scheduledDate, String location, String status, boolean recurring) {
+    public WastePickup(String wasteType, String location) {
+        this.pickupId = null;
         this.wasteType = wasteType;
-        this.scheduledDate = scheduledDate;
+        this.timeSlot = "";
         this.location = location;
-        this.status = status;
-        this.recurring = recurring;
+        this.status = "Pending";
+        this.assignedWorker = "";
     }
+
+    // setters / getters
+    public String getPickupId() { return pickupId; }
+    public void setPickupId(String pickupId) { this.pickupId = pickupId; }
 
     public String getWasteType() { return wasteType; }
-    public LocalDateTime getScheduledDate() { return scheduledDate; }
+    public String getTimeSlot() { return timeSlot; }
+    public void setTimeSlot(String timeSlot) { this.timeSlot = timeSlot; }
+
     public String getLocation() { return location; }
     public String getStatus() { return status; }
-    public boolean isRecurring() { return recurring; }
-
     public void setStatus(String status) { this.status = status; }
 
-    @Override
-    public String toString() {
-        return "Pickup for " + wasteType + " at " + location + " on " + scheduledDate + " (Status: " + status + ")";
-    }
+    public String getAssignedWorker() { return assignedWorker; }
+    public void setAssignedWorker(String assignedWorker) { this.assignedWorker = assignedWorker; }
 }

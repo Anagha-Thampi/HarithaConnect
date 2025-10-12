@@ -24,7 +24,7 @@ public class HomeController {
     @FXML
     private void goToAbout() throws Exception {
         System.out.println("Home button clicked!");
-        //loadPage("/fxml/about.fxml", "About");
+        loadPage("/com/demo/about.fxml", "About");
     }
 
     // Navigate to Login Page

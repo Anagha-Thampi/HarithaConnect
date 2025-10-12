@@ -1,14 +1,26 @@
 package com.demo;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class Heatmap {
+/** Simple heatmap data generator (counts reports per location) */
+public class HeatMap {
+    private final Map<String,Integer> density = new HashMap<>();
 
     public void generateHeatmap(List<DumpReport> reports) {
-        System.out.println("Generating heatmap with " + reports.size() + " reports...");
+        density.clear();
+        for (DumpReport r : reports) {
+            String coords = r.getCoordinates();
+            density.put(coords, density.getOrDefault(coords, 0) + 1);
+        }
     }
 
-    public void showDumpHotspots() {
-        System.out.println("Showing dump hotspots on heatmap...");
+    public List<Map.Entry<String,Integer>> getTopHotspots(int topN) {
+        return density.entrySet().stream()
+                .sorted(Map.Entry.<String,Integer>comparingByValue().reversed())
+                .limit(topN)
+                .collect(Collectors.toList());
     }
+
+    public Map<String,Integer> getDensity() { return density; }
 }

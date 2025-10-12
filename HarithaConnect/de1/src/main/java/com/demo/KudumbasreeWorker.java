@@ -1,6 +1,8 @@
 package com.demo;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class KudumbasreeWorker extends User {
 
@@ -11,24 +13,59 @@ public class KudumbasreeWorker extends User {
     public String getDataFileName() {
         return "kudumbasreeuserdata.csv";
     }
-
-    public void viewRealTimeDumpReports() {
-        System.out.println("Viewing real-time dump reports (worker)...");
+    public List<DumpReport> viewRealTimeDumpReports() {
+        return DumpReport.readAllReports();
     }
 
-    public void addAvailableTimeSlots(List<String> timeSlots) {
-        System.out.println("Available timeslots added: " + timeSlots);
+    /** Add timeslot(s); timeslots.csv columns: slotId,workerUsername,timeSlot,capacity,isOpen */
+    public void addAvailableTimeSlots(List<TimeSlot> slots) {
+        for (TimeSlot s : slots) {
+            DataManager.appendCsv("timeslots.csv", s.getSlotId(), username, s.getTimeSlot(), String.valueOf(s.getCapacity()), String.valueOf(s.isOpen()));
+        }
     }
 
-    public void viewBookedPickups() {
-        System.out.println("Viewing booked pickups...");
+    public List<WastePickup> viewBookedPickups() {
+        List<WastePickup> out = new ArrayList<>();
+        for (String[] row : DataManager.readCsv("pickups.csv")) {
+            // pickupId,username,wasteType,timeSlotId,location,status,assignedWorker,createdAt
+            if (row.length < 8) continue;
+            if (row[6].equals(username)) {
+                WastePickup wp = new WastePickup(row[2], row[4]);
+                wp.setPickupId(row[0]);
+                wp.setTimeSlot(row[3]);
+                wp.setAssignedWorker(row[6]);
+                wp.setStatus(row[5]);
+                out.add(wp);
+            }
+        }
+        return out;
     }
 
-    public void collectWaste(String pickupId) {
-        System.out.println("Collected waste at pickup ID: " + pickupId);
+    public boolean collectWaste(String pickupId) {
+        List<String[]> rows = DataManager.readCsv("pickups.csv");
+        boolean found = false;
+        for (int i=0;i<rows.size();i++) {
+            String[] r = rows.get(i);
+            if (r.length>0 && r[0].equals(pickupId)) {
+                r[5] = "Collected";
+                rows.set(i, r);
+                found = true; break;
+            }
+        }
+        if (found) DataManager.overwriteCsv("pickups.csv", rows);
+        return found;
     }
 
-    public void updatePickupStatus(String pickupId, String status) {
-        System.out.println("Pickup " + pickupId + " updated to: " + status);
+    public boolean updatePickupStatus(String pickupId, String status) {
+        List<String[]> rows = DataManager.readCsv("pickups.csv");
+        boolean changed = false;
+        for (int i=0;i<rows.size();i++) {
+            String[] r = rows.get(i);
+            if (r.length>0 && r[0].equals(pickupId)) {
+                r[5] = status; rows.set(i, r); changed = true; break;
+            }
+        }
+        if (changed) DataManager.overwriteCsv("pickups.csv", rows);
+        return changed;
     }
 }
