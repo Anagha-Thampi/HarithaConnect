@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.DatePicker?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.haritha.HarithaController"
+            style="-fx-background-color: #e8f3e8;">
+
+    <!-- TOP HEADER -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color: #d9ecd9;">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <ImageView fx:id="logo" fitWidth="40" fitHeight="40" />
+            <Label text="Haritha Connect"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" />
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Back"
+                    fx:id="backButton"
+                    style="-fx-background-color: transparent; -fx-font-weight: bold;" />
+            <Button text="Logout"
+                    style="-fx-background-color: transparent; -fx-font-weight: bold;" />
+        </HBox>
+    </top>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <HBox spacing="40" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <!-- LEFT PANEL -->
+            <VBox spacing="20" alignment="TOP_LEFT">
+
+                <Label text="Schedule Doorstep Pickup"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+                <Label text="Choose Ward and Date to See Available Slots"
+                       style="-fx-font-size: 14px; -fx-opacity: 0.7;" />
+
+                <!-- Ward Input -->
+                <VBox spacing="5">
+                    <Label text="Ward number:"
+                           style="-fx-font-size: 14px;" />
+                    <TextField fx:id="wardField" promptText="Enter Ward No"
+                               style="-fx-background-color: white; -fx-padding: 8;" />
+                </VBox>
+
+                <!-- Date Input -->
+                <VBox spacing="5">
+                    <Label text="Date:"
+                           style="-fx-font-size: 14px;" />
+                    <DatePicker fx:id="datePicker"
+                                style="-fx-background-color: white; -fx-padding: 8;" />
+                </VBox>
+
+                <!-- Check Slots Button -->
+                <Button text="Check Slots" fx:id="loadSlotsButton"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 8 20;" />
+
+                <!-- TIME SLOT GRID (INITIALLY HIDDEN) -->
+                <GridPane fx:id="timeSlotGrid" hgap="15" vgap="15" visible="false"
+                          style="-fx-background-color: #f4fff4; -fx-padding: 20; -fx-border-color: #bcdcbc; -fx-border-radius: 5;" />
+
+                <!-- CONFIRM BUTTON -->
+                <Button text="Confirm Pickup" fx:id="confirmButton"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10 30;"
+                        visible="false" />
+
+            </VBox>
+
+            <!-- RIGHT SIDE SCHEDULED BOX -->
+            <VBox spacing="15" alignment="TOP_LEFT"
+                  style="-fx-background-color: white; -fx-border-radius: 8; -fx-border-color: #cccccc;">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label text="Your Scheduled Pickups"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+                <VBox fx:id="scheduledList" spacing="10">
+                    <!-- Controller will add entries here dynamically -->
+                </VBox>
+
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>
