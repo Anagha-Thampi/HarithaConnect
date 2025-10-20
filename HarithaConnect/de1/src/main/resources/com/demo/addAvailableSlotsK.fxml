@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane style="-fx-background-color: #F2F9F2;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.AddTimeSlotsController">
+
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white;">
+            <padding>
+                <Insets bottom="15" left="20" right="20" top="15" />
+            </padding>
+            <ImageView fx:id="logo" fitHeight="40" fitWidth="40">
+            <image>
+               <Image url="@../../../Downloads/WhatsApp%20Image%202025-10-20%20at%201.01.22%20PM.jpeg" />
+            </image></ImageView>
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" text="Haritha Connect" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Back" />
+         <ImageView fx:id="logo1" fitHeight="40" fitWidth="40" layoutX="30.0" layoutY="25.0">
+            <image>
+               <Image url="@../../../Downloads/WhatsApp%20Image%202025-10-20%20at%201.00.56%20PM.jpeg" />
+            </image>
+         </ImageView>
+        </HBox>
+    </top>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <HBox alignment="TOP_CENTER" spacing="40" style="-fx-background-color: #F2F9F2;">
+            <padding>
+                <Insets bottom="30" left="30" right="30" top="30" />
+            </padding>
+
+            <!-- LEFT PANEL: ADD SLOT FORM -->
+            <VBox alignment="TOP_LEFT" spacing="20" style="-fx-background-color: white; -fx-border-color: #bcdcbc; -fx-border-radius: 8; -fx-padding: 20;">
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" text="Add Available Time Slots" />
+
+                <Label style="-fx-font-size: 14px; -fx-text-fill: #555;" text="Enter your available date, time, and number of slots" />
+
+                <VBox spacing="10">
+                    <Label style="-fx-font-size: 14px;" text="Date:" />
+                    <DatePicker fx:id="datePicker" style="-fx-background-color: white;" />
+                </VBox>
+
+                <VBox spacing="10">
+                    <Label style="-fx-font-size: 14px;" text="Time Range:" />
+                    <TextField fx:id="timeRangeField" promptText="e.g. 9:00 AM - 11:00 AM" style="-fx-background-color: white; -fx-padding: 8;" />
+                </VBox>
+
+                <VBox spacing="10">
+                    <Label style="-fx-font-size: 14px;" text="Maximum Slots Available:" />
+                    <TextField fx:id="maxSlotsField" promptText="Enter number" style="-fx-background-color: white; -fx-padding: 8;" />
+                </VBox>
+
+                <Label fx:id="statusLabel" style="-fx-text-fill: #2d5a27; -fx-font-size: 13px;" text="" />
+
+                <Button fx:id="addSlotButton" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10 25; -fx-font-size: 14px;" text="Add Slot" />
+            </VBox>
+
+            <!-- RIGHT PANEL: ADDED TIME SLOTS -->
+            <VBox alignment="TOP_LEFT" spacing="15" style="-fx-background-color: white; -fx-border-radius: 8; -fx-border-color: #bcdcbc; -fx-padding: 20;">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" text="Added Time Slots" />
+                <ScrollPane fitToWidth="true" prefHeight="400">
+                    <VBox fx:id="slotList" spacing="10">
+                        <padding>
+                            <Insets bottom="10" left="10" right="10" top="10" />
+                        </padding>
+                    </VBox>
+                </ScrollPane>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>
