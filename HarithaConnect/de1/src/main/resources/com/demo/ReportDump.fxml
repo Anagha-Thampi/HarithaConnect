@@ -1,18 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.demo.controllers.ReportDumpController"
-      spacing="15" alignment="CENTER" style="-fx-padding: 20;">
-    <Button fx:id="dashbutton" onAction="#goDash" alignment="TOP_LEFT" mnemonicParsing="false" text="Back" />
-    <Label text="Report Illegal Dump" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.geometry.*?>
 
-    <TextField fx:id="locationField" promptText="Enter location"/>
-    <TextArea fx:id="detailsField" promptText="Describe the issue"/>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.demo.controllers.ReportDumpController"
+            style="-fx-background-color: #f8fff8;">
 
-    <Button text="Submit Report" onAction="#submitReport"
-            style="-fx-background-color:#4CAF50; -fx-text-fill:white;"/>
+    <!-- HEADER -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color: #d9ecd9;">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
+            <ImageView fx:id="logo" fitWidth="40" fitHeight="40" />
+            <Label text="Haritha Connect"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" />
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Back" fx:id="backButton"
+                    style="-fx-background-color: transparent; -fx-font-weight: bold;" />
+            <Button text="Logout" fx:id="logoutButton"
+                    style="-fx-background-color: transparent; -fx-font-weight: bold;" />
+        </HBox>
+    </top>
 
-    <Label fx:id="statusLabel" text="" style="-fx-text-fill:green;"/>
-</VBox>
+    <!-- CENTER CONTENT -->
+    <center>
+        <VBox spacing="20" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <Label text="Report a Dump"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" />
+
+            <Label text="Help us keep your area clean by reporting waste locations."
+                   style="-fx-font-size: 14px; -fx-text-fill: #333333;" />
+
+            <!-- Share Location Section -->
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+                <Label text="Share Dump Location & Details"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" />
+
+                <Label text="Do you want to share your location for accurate reporting?"
+                       style="-fx-font-size: 14px;" />
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <RadioButton text="Yes" fx:id="yesLocationRadio" toggleGroup="$locationToggle" />
+                    <RadioButton text="No" fx:id="noLocationRadio" toggleGroup="$locationToggle" />
+                </HBox>
+
+                <!-- MAP SECTION -->
+                <VBox fx:id="mapSection" spacing="10" visible="false">
+                    <Label text="Select dump location on map:" style="-fx-font-size: 14px;" />
+                    <WebView fx:id="mapView" prefHeight="250" />
+                    <Label fx:id="selectedCoordinates" text="No location selected"
+                           style="-fx-font-size: 12px; -fx-text-fill: #666;" />
+                </VBox>
+
+                <!-- Dump Details -->
+                <Label text="Dump Details" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2d5a27;" />
+                <TextArea fx:id="detailsField" promptText="Describe the type of waste or issue..."
+                          prefRowCount="4" wrapText="true"
+                          style="-fx-background-color: #f8fff8; -fx-padding: 10; -fx-border-color: #ccc;" />
+
+                <Button fx:id="reportButton" text="Report Dump"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10 30; -fx-font-size: 14px;" />
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

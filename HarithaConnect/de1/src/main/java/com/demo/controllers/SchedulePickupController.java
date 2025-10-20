@@ -1,245 +1,277 @@
 package com.demo.controllers;
 
+import com.demo.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.TextAlignment;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.stage.Stage;
-
+import javafx.scene.layout.*;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.geometry.Insets;
 import java.io.*;
 import java.nio.file.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Controller for SchedulePickup.fxml
- * Handles:
- *  - Loading wards from CSV
- *  - Displaying available time slots based on selected ward
- *  - Scheduling new pickups (writes to CSV)
- *  - Loading already scheduled pickups
- *  - Handling dashboard navigation and logout
- */
 public class SchedulePickupController {
 
-    @FXML private ComboBox<String> wardComboBox;
-    @FXML private Button loadSlotsButton;
+    @FXML private TextField wardField;
+    @FXML private DatePicker datePicker;
     @FXML private GridPane timeSlotGrid;
-    @FXML private Button confirmPickupButton;
-    @FXML private Label successMessage;
-    @FXML private VBox scheduledPickupBox;
-    @FXML private VBox pickupListBox;
-    @FXML private Button backToDashboardButton;
-    @FXML private MenuItem logoutMenuItem;
+    @FXML private VBox scheduledList;
+    @FXML private Button loadSlotsButton;
+    @FXML private Button confirmButton;
+    @FXML private VBox mapSection;
+    @FXML private WebView mapView;
+    @FXML private Label selectedLocationLabel;
 
-    // File paths — adjust to match your project structure
-    private final String WARD_SLOTS_CSV = "src/main/resources/data/ward_slots.csv";
-    private final String SCHEDULED_PICKUPS_CSV = "src/main/resources/data/scheduled_pickups.csv";
+    private String selectedSlotId = null;
+    private String selectedCoordinates = null;
 
-    // Keeps selected slot in memory
-    private String selectedSlot = null;
+    private static final String TIMESLOTS_FILE = "/com/demo/data/timeslots.csv";
+    private static final String PICKUPS_FILE = "/com/demo/data/pickups.csv";
+    private static final String WORKERS_FILE = "/com/demo/data/kudumbasreeuserdata.csv";
+
 
     @FXML
     public void initialize() {
-        loadWardList();
-        setupActions();
+        loadSlotsButton.setOnAction(e -> loadAvailableSlots());
+        confirmButton.setOnAction(e -> confirmPickup());
         loadScheduledPickups();
     }
 
-    /**
-     * Loads list of wards into ComboBox from the ward_slots.csv
-     * Format: WardName,Slot1|Slot2|Slot3
-     */
-    private void loadWardList() {
-        Set<String> wards = new HashSet<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(WARD_SLOTS_CSV))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.trim().isEmpty()) continue;
-                String[] parts = line.split(",", 2);
-                if (parts.length > 0) wards.add(parts[0].trim());
-            }
-            wardComboBox.getItems().setAll(wards);
-        } catch (IOException e) {
-            System.err.println("Error loading wards: " + e.getMessage());
+    private void loadAvailableSlots() {
+        String wardInput = wardField.getText().trim();
+        LocalDate date = datePicker.getValue();
+
+        if (wardInput.isEmpty() || date == null) {
+            showAlert("Error", "Please enter ward number and date.");
+            return;
         }
-    }
 
-    /**
-     * Sets up all button/menu actions.
-     */
-    private void setupActions() {
-        loadSlotsButton.setOnAction(e -> onLoadSlots());
-        confirmPickupButton.setOnAction(e -> onConfirmPickup());
-        backToDashboardButton.setOnAction(this::handleBackToDashboard);
-        logoutMenuItem.setOnAction(this::handleLogout);
-    }
-
-    /**
-     * Loads time slots for the selected ward.
-     */
-    private void onLoadSlots() {
-        String selectedWard = wardComboBox.getValue();
-        if (selectedWard == null) {
-            showAlert("Please select a ward first.");
+        List<String> workerIds = getWorkersByWard(wardInput);
+        if (workerIds.isEmpty()) {
+            showAlert("Error", "No Kudumbasree workers found for this ward.");
             return;
         }
 
         timeSlotGrid.getChildren().clear();
 
-        List<String> slots = getSlotsForWard(selectedWard);
-        if (slots.isEmpty()) {
-            showAlert("No slots found for this ward.");
-            timeSlotGrid.setVisible(false);
-            confirmPickupButton.setVisible(false);
-            return;
-        }
+        try (InputStream is = getClass().getResourceAsStream(TIMESLOTS_FILE)) {
+            if (is == null) throw new FileNotFoundException("Could not find timeslots.csv in resources.");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-        int col = 0, row = 0;
-        ToggleGroup slotGroup = new ToggleGroup();
+            String line;
+            int row = 0, col = 0;
+            reader.readLine(); // skip header
 
-        for (String slot : slots) {
-            RadioButton rb = new RadioButton(slot);
-            rb.setToggleGroup(slotGroup);
-            rb.setStyle("-fx-font-size: 14px;");
-            timeSlotGrid.add(rb, col, row);
-            col++;
-            if (col == 4) {
-                col = 0;
-                row++;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length < 6) continue;
+
+                String slotId = parts[0];
+                String workerId = parts[1];
+                String slotDate = parts[2];
+                String timeSlot = parts[3];
+                int capacity = Integer.parseInt(parts[4]);
+                boolean isOpen = Boolean.parseBoolean(parts[5]);
+
+                // Debug line (optional)
+                System.out.println("DEBUG: " + workerId + " | " + slotDate + " | " + date + " | open=" + isOpen + " | cap=" + capacity);
+
+                if (workerIds.contains(workerId) && slotDate.equals(date.toString()) && isOpen && capacity > 0) {
+                    Button btn = new Button(timeSlot + " (" + capacity + ")");
+                    btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+                    btn.setOnAction(ev -> {
+                        selectedSlotId = slotId;
+                        timeSlotGrid.getChildren().forEach(n -> n.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;"));
+                        btn.setStyle("-fx-background-color: #2e7d32; -fx-text-fill: white;");
+                        showMap();
+                        mapSection.setVisible(true);
+                        confirmButton.setVisible(true);
+                    });
+                    timeSlotGrid.add(btn, col++, row);
+                    if (col == 3) { col = 0; row++; }
+                }
             }
+            timeSlotGrid.setVisible(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Could not load time slots.");
         }
-
-        slotGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
-            if (newToggle != null)
-                selectedSlot = ((RadioButton) newToggle).getText();
-        });
-
-        timeSlotGrid.setVisible(true);
-        confirmPickupButton.setVisible(true);
+    }
+    public void updateCoordinates(String coords) {
+        System.out.println("Map clicked, received coords: " + coords);
+        selectedCoordinates = coords;
+        selectedLocationLabel.setText("Selected Location: " + coords);
     }
 
-    /**
-     * Fetches time slots for a ward from CSV file.
-     */
-    private List<String> getSlotsForWard(String ward) {
-        try (BufferedReader br = new BufferedReader(new FileReader(WARD_SLOTS_CSV))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",", 2);
-                if (parts.length == 2 && parts[0].trim().equalsIgnoreCase(ward)) {
-                    return Arrays.stream(parts[1].split("\\|"))
-                            .map(String::trim)
-                            .collect(Collectors.toList());
+
+    private List<String> getWorkersByWard(String wardNo) {
+        List<String> workerIds = new ArrayList<>();
+        try (InputStream is = getClass().getResourceAsStream("/com/demo/data/kudumbasreeuserdata.csv")) {
+            if (is == null) {
+                throw new FileNotFoundException("Could not find kudumbasreeuserdata.csv in resources.");
+            }
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+                String line;
+                br.readLine(); // skip header
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length >= 7 && parts[6].trim().equals(wardNo.trim())) {
+                        workerIds.add(parts[0]);
+                    }
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error reading ward slots CSV: " + e.getMessage());
+            e.printStackTrace();
         }
-        return Collections.emptyList();
+        return workerIds;
     }
 
-    /**
-     * Confirm and schedule a pickup.
-     */
-    private void onConfirmPickup() {
-        String ward = wardComboBox.getValue();
-        if (ward == null || selectedSlot == null) {
-            showAlert("Please select a ward and time slot first.");
+
+    @SuppressWarnings("removal")
+    private void showMap() {
+        WebEngine engine = mapView.getEngine();
+
+        String html = """
+        <html>
+        <head>
+          <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+          <link rel='stylesheet' href='https://unpkg.com/leaflet/dist/leaflet.css'/>
+          <script src='https://unpkg.com/leaflet/dist/leaflet.js'></script>
+        </head>
+        <body>
+          <div id='map' style='width:100%;height:300px;'></div>
+          <script>
+            var map = L.map('map').setView([10.8505, 76.2711], 8);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19
+            }).addTo(map);
+            var marker;
+            map.on('click', function(e) {
+                if (marker) map.removeLayer(marker);
+                marker = L.marker(e.latlng).addTo(map);
+                var coords = e.latlng.lat.toFixed(5) + "," + e.latlng.lng.toFixed(5);
+                if (window.java && window.java.updateCoords) {
+                    window.java.updateCoords(coords);
+                } else {
+                    alert("Java bridge not connected!");
+                }
+            });
+          </script>
+        </body>
+        </html>
+    """;
+
+        engine.loadContent(html);
+
+        engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if (newState == javafx.concurrent.Worker.State.SUCCEEDED) {
+                try {
+                    @SuppressWarnings("removal")
+                    netscape.javascript.JSObject window =
+                            (netscape.javascript.JSObject) engine.executeScript("window");
+                    window.setMember("java", new MapBridge(this));
+                    System.out.println("✅ MapBridge connected successfully!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    private void confirmPickup() {
+        if (selectedSlotId == null || selectedCoordinates == null) {
+            showAlert("Error", "Select a time slot and location.");
             return;
         }
 
-        // Check if already scheduled
-        if (isPickupAlreadyScheduled(ward, selectedSlot)) {
-            showAlert("A pickup for this ward and slot is already scheduled.");
+        String username = Session.getCurrentUsername();
+        if (username == null) {
+            showAlert("Error", "No user logged in.");
             return;
         }
 
-        try (FileWriter fw = new FileWriter(SCHEDULED_PICKUPS_CSV, true)) {
-            fw.write(ward + "," + selectedSlot + "\n");
-            successMessage.setVisible(true);
+        try {
+            // ✅ 1. Update timeslot capacity (resources version)
+            Path timeslotPath = Paths.get("src/main/resources/com/demo/data/timeslots.csv");
+            List<String> lines = Files.readAllLines(timeslotPath);
+            List<String> updated = new ArrayList<>();
+            updated.add(lines.get(0)); // header
+
+            for (int i = 1; i < lines.size(); i++) {
+                String[] parts = lines.get(i).split(",");
+                if (parts[0].equals(selectedSlotId)) {
+                    int capacity = Integer.parseInt(parts[4]) - 1;
+                    parts[4] = String.valueOf(Math.max(0, capacity));
+                    if (capacity <= 0) parts[5] = "false";
+                }
+                updated.add(String.join(",", parts));
+            }
+            Files.write(timeslotPath, updated);
+
+            // ✅ 2. Always write pickups.csv inside same resources folder
+            Path pickupPath = Paths.get("src/main/resources/com/demo/data/pickups.csv");
+            File pickupFile = pickupPath.toFile();
+
+            boolean addHeader = !pickupFile.exists() || pickupFile.length() == 0;
+            pickupFile.getParentFile().mkdirs(); // ensure directories exist
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(pickupFile, true))) {
+                if (addHeader) {
+                    bw.write("pickupId,username,wasteType,timeSlotId,location,status,assignedWorker,createdAt\n");
+                }
+                String pickupId = UUID.randomUUID().toString();
+                String now = java.time.LocalDateTime.now().toString();
+                String wasteType = "Mixed";
+                bw.write(String.join(",", pickupId, username, wasteType, selectedSlotId, selectedCoordinates, "Pending", "", now));
+                bw.newLine();
+            }
+
+            showAlert("Success", "Pickup scheduled successfully!");
             loadScheduledPickups();
+
+            // ✅ Debug: show where file was actually written
+            System.out.println("DEBUG → pickup saved to: " + pickupFile.getAbsolutePath());
+
         } catch (IOException e) {
-            showAlert("Error saving scheduled pickup.");
+            e.printStackTrace();
+            showAlert("Error", "Failed to confirm pickup.");
         }
     }
 
-    /**
-     * Checks if a pickup is already scheduled.
-     */
-    private boolean isPickupAlreadyScheduled(String ward, String slot) {
-        try (BufferedReader br = new BufferedReader(new FileReader(SCHEDULED_PICKUPS_CSV))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",", 2);
-                if (parts.length == 2 && parts[0].equalsIgnoreCase(ward) && parts[1].equalsIgnoreCase(slot))
-                    return true;
-            }
-        } catch (IOException ignored) {}
-        return false;
-    }
 
-    /**
-     * Loads and displays scheduled pickups.
-     */
     private void loadScheduledPickups() {
-        pickupListBox.getChildren().clear();
+        scheduledList.getChildren().clear();
+        String username = Session.getCurrentUsername();
+        if (username == null) return;
 
-        List<String> pickups = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(SCHEDULED_PICKUPS_CSV))) {
+        Path pickupPath = Paths.get("src/main/resources/com/demo/data/pickups.csv");
+        if (!Files.exists(pickupPath)) return;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(pickupPath.toFile()))) {
             String line;
-            while ((line = br.readLine()) != null)
-                pickups.add(line);
-        } catch (IOException e) {
-            System.err.println("Error loading scheduled pickups: " + e.getMessage());
-        }
-
-        if (pickups.isEmpty()) {
-            scheduledPickupBox.setVisible(false);
-            return;
-        }
-
-        scheduledPickupBox.setVisible(true);
-        for (String pickup : pickups) {
-            String[] parts = pickup.split(",");
-            if (parts.length == 2) {
-                Label label = new Label("Ward: " + parts[0] + "  |  Slot: " + parts[1]);
-                label.setStyle("-fx-background-color: #f0fff0; -fx-padding: 6; -fx-border-color: #a8e6a3; -fx-border-radius: 5;");
-                label.setTextAlignment(TextAlignment.CENTER);
-                pickupListBox.getChildren().add(label);
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 8 && parts[1].equals(username)) {
+                    Label lbl = new Label("Pickup ID: " + parts[0] + " | Status: " + parts[6]);
+                    lbl.setPadding(new Insets(5));
+                    lbl.setStyle("-fx-background-color: #e0ffe0; -fx-border-color: #a5d6a7;");
+                    scheduledList.getChildren().add(lbl);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    /**
-     * Alert helper.
-     */
-    private void showAlert(String message) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Haritha Connect");
-        alert.setHeaderText(null);
+        alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    /**
-     * Handle going back to dashboard.
-     */
-    private void handleBackToDashboard(ActionEvent event) {
-        System.out.println("Navigating back to dashboard...");
-        // TODO: Replace with scene switching logic if needed
-    }
-
-    /**
-     * Handle logout.
-     */
-    private void handleLogout(ActionEvent event) {
-        System.out.println("Logging out...");
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
     }
 }

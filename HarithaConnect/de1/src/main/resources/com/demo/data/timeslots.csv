@@ -1,1 +1,4 @@
-slotId,workerUsername,timeSlot,capacity,isOpen
+slotId,workerUsername,date,timeSlot,capacity,isOpen
+slot1,worker_kavya,2025-10-22,09:00-11:00,3,true
+slot2,worker_rahul,2025-10-22,11:00-13:00,1,true
+slot3,worker_anjali,2025-10-23,14:00-16:00,1,true

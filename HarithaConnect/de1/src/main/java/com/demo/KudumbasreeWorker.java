@@ -13,6 +13,10 @@ public class KudumbasreeWorker extends User {
     public String getDataFileName() {
         return "kudumbasreeuserdata.csv";
     }
+    public String getWorkerId() {
+        return username;
+    }
+
     public List<DumpReport> viewRealTimeDumpReports() {
         return DumpReport.readAllReports();
     }
@@ -30,7 +34,7 @@ public class KudumbasreeWorker extends User {
             // pickupId,username,wasteType,timeSlotId,location,status,assignedWorker,createdAt
             if (row.length < 8) continue;
             if (row[6].equals(username)) {
-                WastePickup wp = new WastePickup(row[2], row[4]);
+                WastePickup wp = new WastePickup(row[0], row[2], row[4],row[3],"",row[5],row[6],"");
                 wp.setPickupId(row[0]);
                 wp.setTimeSlot(row[3]);
                 wp.setAssignedWorker(row[6]);

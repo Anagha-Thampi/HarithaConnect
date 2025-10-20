@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefWidth="1000.0" prefHeight="700.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane prefWidth="1000.0" prefHeight="700.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.CleanestStreetController" >
 
     <!-- Top Navigation Bar -->
     <top>
@@ -23,14 +23,15 @@
             </padding>
 
             <ImageView fitHeight="30" fitWidth="30">
-                <Image url="@logo.png" /> <!-- Optional logo file -->
+                <Image url="@logo.png" />
             </ImageView>
             <Label style="-fx-text-fill: #2e7d32; -fx-font-weight: bold; -fx-font-size: 18px;" text="Haritha Connect" />
             <Pane HBox.hgrow="ALWAYS" />
 
-            <Button style="-fx-background-color: transparent; -fx-font-size: 16px; -fx-text-fill: #2e7d32;" text="👤" />
-            <Button style="-fx-background-color: transparent; -fx-text-fill: #2e7d32; -fx-font-size: 14px;" text="Logout" />
+            <Button fx:id="backButton" text="← Back to Dashboard"
+                    style="-fx-background-color: transparent; -fx-font-size: 14px; -fx-text-fill: #2e7d32;" />
         </HBox>
+
     </top>
 
     <!-- Center Section -->

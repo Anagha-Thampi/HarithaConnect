@@ -19,6 +19,10 @@ public class LocalUser extends User {
     public String getDataFileName() {
         return "localuserdata.csv";
     }
+    public String getUsername() {
+        return username;
+    }
+
     public void selectWasteType(String type) {
         // optional: store preference (not persisted here)
         System.out.println(username + " selected waste type: " + type);

@@ -3,6 +3,7 @@ package com.demo.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -54,6 +55,11 @@ public class ForgotPasswordController {
     private void goToLogin(ActionEvent event) throws IOException {
         switchScene("/com/demo/loginselection.fxml", event);
     }
+    @FXML
+    private void goToAbout(ActionEvent event) throws IOException {
+        System.out.println("Home button clicked!");
+        switchScene("/com/demo/about.fxml", event);
+    }
 
     private void switchScene(String fxmlPath, ActionEvent event) throws IOException {
         URL resource = getClass().getResource(fxmlPath);
@@ -63,7 +69,7 @@ public class ForgotPasswordController {
         }
 
         FXMLLoader loader = new FXMLLoader(resource);
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
     }

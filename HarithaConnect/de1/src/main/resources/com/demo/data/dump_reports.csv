@@ -1,1 +1,7 @@
-reportId,locationText,coordinates,status,reportedDate,reportedBy,details
+reportId,locationText,coordinates,status,reportedDate,reportedBy,details,ward,panchayatName
+1,Main Street,"9.93,76.26",Cleaned,2025-10-10,user1,Garbage cleared near bus stop,12,Greenfield
+2,Market Road,"9.92,76.25",Pending,2025-10-11,user2,Overflowing bins,12,Greenfield
+3,River Lane,"9.91,76.27",Cleaned,2025-10-12,user3,Plastic waste collected,14,Sunrise
+4,Station Road,"9.90,76.28",Pending,2025-10-13,user1,Dump pile near auto stand,12,Greenfield
+5,Market Road,"9.92,76.25",Cleaned,2025-10-14,user2,Cleared by Kudumbasree team,12,Greenfield
+

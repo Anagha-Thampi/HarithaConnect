@@ -7,6 +7,10 @@ public class PanchayatOfficial extends User {
     public PanchayatOfficial(String username, String password) {
         super(username, password);
     }
+    public String getPanchayatId() {
+        return username;
+    }
+
     @Override
     public String getDataFileName() {
         return "panchayatuserdata.csv";

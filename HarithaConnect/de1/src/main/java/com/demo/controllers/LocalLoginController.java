@@ -1,6 +1,7 @@
 package com.demo.controllers;
 
 import com.demo.LocalUser;
+import com.demo.Session;
 import com.demo.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,10 +37,12 @@ public class LocalLoginController {
 
         if (user.login(username, password)) {
             System.out.println("Local user logged in: " + user.getUsername());
+            Session.setCurrentUser(user); // ✅ Store the full LocalUser object in session
             loadPage("/com/demo/LocalDash.fxml", "Local Dashboard");
         } else {
             showAlert("Error", "Invalid credentials for Local User.");
         }
+
     }
 
     // Navigate to the Register Page

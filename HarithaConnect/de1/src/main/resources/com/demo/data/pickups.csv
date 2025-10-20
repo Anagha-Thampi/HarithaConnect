@@ -1,1 +1,5 @@
-pickupId,username,wasteType,timeSlotId,location,status,assignedWorker,createdAt
+pickupId,username,wasteType,timeSlotId,lat,long,status,assignedWorker,createdAt
+cc18ed85-e864-4753-b9e9-733d1355872f,123,Mixed,slot2,11.22690,76.17920,Pending,,2025-10-20T13:01:11.707220400
+0ffc0adf-1024-499e-b6b9-a3f88bb26d94,123,Mixed,slot1,10.90344,76.15173,Pending,,2025-10-20T13:03:58.928146700
+6e107153-5821-411f-916c-30d435c6f03f,123,Mixed,slot3,11.17301,76.48132,Pending,,2025-10-20T13:05:24.634300900
+ed8fc265-4ecf-4405-87a4-bae59951e316,123,Mixed,slot3,11.16223,76.09680,Pending,,2025-10-20T21:14:18.379705400

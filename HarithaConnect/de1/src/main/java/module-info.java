@@ -12,6 +12,7 @@ module com.demo {
     requires com.almasb.fxgl.all;
     requires javafx.base;
     requires javafx.graphics;
+    requires jdk.jsobject;
 
     opens com.demo.controllers to javafx.fxml;
 

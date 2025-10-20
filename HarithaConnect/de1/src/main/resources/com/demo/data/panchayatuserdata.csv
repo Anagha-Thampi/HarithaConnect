@@ -1,3 +1,4 @@
-12345,5555,esdf,dgesaa,esfdgtrfed,8848111044,ewifds
-4321,1111,eworfes,lewdks,daskdsf,8828444321,edskx
-1111,0000,sdsdssaa,asdasd,adadsa,22222222222,qowiwqpoq
+panchayatId,password,fullName,designation,email,mobile,officeAddress,panchayatName
+panch1,pan123,Arjun Nair,Panchayat Secretary,arjun@mail.com,9998887776,Greenfield Office,Greenfield
+panch2,pan456,Rekha Devi,Panchayat Officer,rekha@mail.com,9998887777,Sunrise Office,Sunrise
+123,123
