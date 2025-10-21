@@ -13,6 +13,7 @@ module com.demo {
     requires javafx.base;
     requires javafx.graphics;
     requires jdk.jsobject;
+    requires java.desktop;
 
     opens com.demo.controllers to javafx.fxml;
 

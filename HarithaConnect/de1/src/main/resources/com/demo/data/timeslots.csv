@@ -2,3 +2,4 @@ slotId,workerUsername,date,timeSlot,capacity,isOpen
 slot1,worker_kavya,2025-10-22,09:00-11:00,3,true
 slot2,worker_rahul,2025-10-22,11:00-13:00,1,true
 slot3,worker_anjali,2025-10-23,14:00-16:00,1,true
+8a8713d1-00e3-42a4-8c90-d27a0313d86e,worker_kavya,2025-10-23,9:00AM - 10:00AM,2,true

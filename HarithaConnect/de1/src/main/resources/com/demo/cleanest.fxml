@@ -28,7 +28,8 @@
             <Label style="-fx-text-fill: #2e7d32; -fx-font-weight: bold; -fx-font-size: 18px;" text="Haritha Connect" />
             <Pane HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="backButton" text="← Back to Dashboard"
+
+            <Button onAction="#handleBackAction" fx:id="backButton" text="← Back to Dashboard"
                     style="-fx-background-color: transparent; -fx-font-size: 14px; -fx-text-fill: #2e7d32;" />
         </HBox>
 

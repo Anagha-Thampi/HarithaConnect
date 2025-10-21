@@ -2,9 +2,11 @@ package com.demo.controllers;
 
 import com.demo.KudumbasreeWorker;
 import com.demo.LocalUser;
+import com.demo.Session;
 import com.demo.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class WorkerLoginController {
 
@@ -24,7 +27,7 @@ public class WorkerLoginController {
     private PasswordField passwordField;
 
     @FXML
-    private void handleLogin() {
+    private void handleLogin(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -37,7 +40,8 @@ public class WorkerLoginController {
 
         if (user.login(username, password)) {
             System.out.println("Worker user logged in: " + user.getUsername());
-            loadPage("/com/demo/WorkerDash.fxml", "Local Dashboard");
+            Session.setCurrentUser(user); // this line is crucial
+            loadPage("/com/demo/WrokerDash.fxml", "Local Dashboard",event);
         } else {
             showAlert("Error", "Invalid credentials for Kudumbasree User.");
         }
@@ -46,20 +50,25 @@ public class WorkerLoginController {
     // Navigate to the Register Page
     @FXML
     private void goToRegister(ActionEvent event) throws IOException {
-        loadPage("/com/demo/WorkerRegistration.fxml", "Register Account");
+        loadPage("/com/demo/WorkerRegistration.fxml", "Register Account",event);
     }
 
     // Navigate to the Forgot Password Page
     @FXML
     private void goToForgotPassword(ActionEvent event) throws IOException {
-        loadPage("/com/demo/ForgotPassword.fxml", "Forgot Password");
+        loadPage("/com/demo/ForgotPassword.fxml", "Forgot Password",event);
     }
 
-    private void loadPage(String fxmlPath, String title) {
+    private void loadPage(String fxmlPath, String title, ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
-            Stage stage = (Stage) usernameField.getScene().getWindow();
+            URL resource = getClass().getResource(fxmlPath);
+            if (resource == null) {
+                showAlert("Error", "Cannot find FXML file: " + fxmlPath);
+                return;
+            }
+
+            Parent root = FXMLLoader.load(resource);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle(title);
             stage.show();
@@ -68,6 +77,8 @@ public class WorkerLoginController {
             showAlert("Error", "Unable to load: " + fxmlPath);
         }
     }
+
+
 
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -78,15 +89,15 @@ public class WorkerLoginController {
     }
 
     @FXML
-    private void goToLogin() throws Exception {
+    private void goToLogin(ActionEvent event) throws Exception {
         System.out.println("log button clicked!");
-        loadPage("/com/demo/LoginSelection.fxml", "Login");
+        loadPage("/com/demo/LoginSelection.fxml", "Login",event);
     }
 
     @FXML
     private void goHome(ActionEvent event) {
         System.out.println("Home button clicked!");
-        loadPage("/com/demo/homepage.fxml", "Home");
+        loadPage("/com/demo/homepage.fxml", "Home",event);
     }
 
 }

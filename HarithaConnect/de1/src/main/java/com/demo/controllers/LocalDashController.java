@@ -47,6 +47,6 @@ public class LocalDashController {
 
     @FXML
     private void goToComplaint() {
-        loadPage("/com/demo/Complaint.fxml", "Submit Complaint");
+        loadPage("/com/demo/viewcomplaints.fxml", "Submit Complaint");
     }
 }

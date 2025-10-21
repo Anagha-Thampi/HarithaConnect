@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, #e5f2e5, #cde6cd);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.PanchayatDashController">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, #e5f2e5, #cde6cd);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.WorkerDashController">
 
     <!-- Top Navigation Bar -->
     <top>
@@ -67,7 +67,7 @@
                   <opaqueInsets>
                      <Insets left="8.0" />
                   </opaqueInsets></Label>
-                    <Button fx:id="viewComplaintsButton" onAction="#handleViewComplaints" style="-fx-background-color: #4CAF50; -fx-text-fill: white;                                    -fx-background-radius: 8; -fx-padding: 6 14 6 14; -fx-cursor: hand;" text="View Details" />
+                    <Button fx:id="viewComplaintsButton" onAction="#handleaddslots" style="-fx-background-color: #4CAF50; -fx-text-fill: white;                                    -fx-background-radius: 8; -fx-padding: 6 14 6 14; -fx-cursor: hand;" text="View Details" />
                 </VBox>
 
                 <!-- Card 2 -->
@@ -91,7 +91,7 @@
                         </image>
                     </ImageView>
                     <Label prefHeight="20.0" prefWidth="125.0" style="-fx-font-size:14px; -fx-font-weight:bold;" text="Scheduled Pickups" />
-                    <Button fx:id="viewLeaderboardButton" onAction="#handleViewLeaderboard" style="-fx-background-color: #4CAF50; -fx-text-fill: white;                                    -fx-background-radius: 8; -fx-padding: 6 14 6 14; -fx-cursor: hand;" text="View Leaderboard" />
+                    <Button fx:id="viewLeaderboardButton" onAction="#handleViewBooked" style="-fx-background-color: #4CAF50; -fx-text-fill: white;                                    -fx-background-radius: 8; -fx-padding: 6 14 6 14; -fx-cursor: hand;" text="View Leaderboard" />
                 </VBox>
             </TilePane>
         </VBox>

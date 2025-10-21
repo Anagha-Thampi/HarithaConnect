@@ -24,9 +24,16 @@ public class KudumbasreeWorker extends User {
     /** Add timeslot(s); timeslots.csv columns: slotId,workerUsername,timeSlot,capacity,isOpen */
     public void addAvailableTimeSlots(List<TimeSlot> slots) {
         for (TimeSlot s : slots) {
-            DataManager.appendCsv("timeslots.csv", s.getSlotId(), username, s.getTimeSlot(), String.valueOf(s.getCapacity()), String.valueOf(s.isOpen()));
+            DataManager.appendCsv("timeslots.csv",
+                    s.getSlotId(),
+                    username,
+                    s.getDate(),
+                    s.getTimeSlot(),
+                    String.valueOf(s.getCapacity()),
+                    String.valueOf(s.isOpen()));
         }
     }
+
 
     public List<WastePickup> viewBookedPickups() {
         List<WastePickup> out = new ArrayList<>();

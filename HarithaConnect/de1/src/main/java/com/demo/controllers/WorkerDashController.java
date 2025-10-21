@@ -2,15 +2,18 @@ package com.demo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.net.URL;
 
-public class PanchayatDashController {
+public class WorkerDashController {
 
     @FXML
     private Button viewComplaintsButton;
@@ -24,20 +27,19 @@ public class PanchayatDashController {
     // --- Handlers for Dashboard Buttons ---
 
     @FXML
-    private void handleViewComplaints() {
-        showAlert("Complaints", "This will open the complaints review page.");
-        // TODO: Load Complaints Page
+    private void handleaddslots(ActionEvent event) {
+        loadPage("/com/demo/addAvailableSlotsK.fxml", "Add Slots",event);
     }
 
     @FXML
-    private void handleViewReports() {
+    private void handleViewReports(ActionEvent event) {
         showAlert("Reports", "This will open the real-time reports page.");
         // TODO: Load Reports Page
     }
 
     @FXML
-    private void handleViewLeaderboard() {
-        loadPage("/com/demo/cleanest.fxml", "Leaderboard");
+    private void handleViewBooked(ActionEvent event) {
+        loadPage("/com/demo/cleanest.fxml", "Leaderboard",event);
     }
 
     // --- Utility Method ---
@@ -48,18 +50,24 @@ public class PanchayatDashController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    private void loadPage(String fxml, String title) {
+    private void loadPage(String fxmlPath, String title, ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Parent root = loader.load();
-            Stage stage = (Stage) (root.getScene() == null
-                    ? Stage.getWindows().stream().filter(w -> w.isShowing()).findFirst().get()
-                    : root.getScene().getWindow());
+            URL resource = getClass().getResource(fxmlPath);
+            if (resource == null) {
+                showAlert("Error", "Cannot find FXML file: " + fxmlPath);
+                return;
+            }
+
+            Parent root = FXMLLoader.load(resource);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle(title);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert("Error", "Unable to load: " + fxmlPath);
         }
     }
+
 }
+

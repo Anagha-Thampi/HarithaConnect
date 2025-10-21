@@ -21,6 +21,7 @@ public class LocalRegistrationController {
     @FXML private TextField usernameField;
     @FXML private TextField addressField;
     @FXML private TextField mobileField;
+    @FXML private TextField WardField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private PasswordField confirmPasswordField;
@@ -37,10 +38,11 @@ public class LocalRegistrationController {
         String email = emailField.getText().trim();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
+        String ward=WardField.getText().trim();
 
         // Validation
         if (houseNumber.isEmpty() || name.isEmpty() || username.isEmpty() ||
-                address.isEmpty() || mobile.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                address.isEmpty() || ward.isEmpty()||mobile.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Missing Fields", "Please fill in all required fields.");
             return;
         }
@@ -80,10 +82,10 @@ public class LocalRegistrationController {
 
             try (FileWriter writer = new FileWriter(CSV_PATH, true)) {
                 if (!fileExists) {
-                    writer.write("Username,Password,HouseNumber,FullName,Address,Mobile,Email\n");
+                    writer.write("Username,Password,HouseNumber,FullName,Address,Mobile,Email,Ward\n");
                 }
                 writer.write(String.format("%s,%s,%s,%s,%s,%s,%s%s",
-                        username, password, houseNumber, name, address, mobile, email,System.lineSeparator()));
+                        username, password, houseNumber, name, address, mobile, email,ward,System.lineSeparator()));
             }
 
             // Show alert and redirect to login

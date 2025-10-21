@@ -69,21 +69,24 @@
                 <Label text="Residential Address:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                 <TextField fx:id="addressField" promptText="Enter your complete address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
+                <!-- Ward -->
+                <Label text="Ward:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <TextField fx:id="WardField" promptText="Enter ward number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <!-- Mobile Number -->
-                <Label text="Mobile Number:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                <TextField fx:id="mobileField" promptText="+91 XXXXX XXXXX" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label text="Mobile Number:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <TextField fx:id="mobileField" promptText="+91 XXXXX XXXXX" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                 <!-- Email Address -->
-                <Label text="Email Address (Optional):" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                <TextField fx:id="emailField" promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label text="Email Address (Optional):" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <TextField fx:id="emailField" promptText="Enter email address" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                 <!-- Password -->
-                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                <PasswordField fx:id="passwordField" promptText="Create password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <PasswordField fx:id="passwordField" promptText="Create password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
                 <!-- Confirm Password -->
-                <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                <PasswordField fx:id="confirmPasswordField" promptText="Re-enter password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                <PasswordField fx:id="confirmPasswordField" promptText="Re-enter password" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />

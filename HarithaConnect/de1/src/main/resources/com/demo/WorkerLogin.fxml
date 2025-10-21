@@ -52,7 +52,7 @@
                     <TextField fx:id="usernameField" promptText="Worker ID" style="-fx-background-radius: 6; -fx-padding: 8;" />
                     <PasswordField fx:id="passwordField" promptText="Password" style="-fx-background-radius: 6; -fx-padding: 8;" />
 
-                    <Button style="-fx-background-color: green; -fx-text-fill: white;                                    -fx-background-radius: 20; -fx-padding: 8 20 8 20;                                    -fx-cursor: hand;" text="Login">
+                    <Button onAction="#handleLogin" style="-fx-background-color: green; -fx-text-fill: white;  -fx-background-radius: 20; -fx-padding: 8 20 8 20; -fx-cursor: hand;" text="Login">
                         <tooltip>
                             <Tooltip text="Click to login" />
                         </tooltip>
