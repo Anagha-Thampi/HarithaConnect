@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #eaf4ec;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.EwasteCentresController">
+
+    <!-- ==================== TOP BAR ==================== -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 12 20;">
+            <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@logo.png" />
+                </image>
+            </ImageView>
+            <Label style="-fx-text-fill: green; -fx-font-size: 20px; -fx-font-weight: bold;" text="HarithaConnect" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" style="-fx-background-color: transparent; -fx-text-fill: green; -fx-font-size: 14px; -fx-cursor: hand;" text="⟵ Back" />
+        </HBox>
+    </top>
+
+    <!-- ==================== CENTER CONTENT ==================== -->
+    <center>
+        <HBox alignment="TOP_CENTER" spacing="30" style="-fx-padding: 40 40 20 40;">
+
+            <!-- LEFT SIDE -->
+            <VBox alignment="TOP_LEFT" prefWidth="700" spacing="20" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8,0,0,2);">
+
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: green;" text="E-Waste Centres Near You" />
+
+                <!-- Ward Selector -->
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label style="-fx-font-size: 15px; -fx-text-fill: #333;" text="Select Your Ward:" />
+                    <ComboBox fx:id="wardComboBox" prefWidth="220" promptText="Select Ward" style="-fx-background-color: #f4f8f5; -fx-border-color: #c5d9cb; -fx-border-radius: 6; -fx-background-radius: 6;" />
+                </HBox>
+
+                <!-- Placeholder VBox for E-Waste Centre Cards (populated via controller) -->
+                <VBox fx:id="centresList" alignment="CENTER" spacing="15">
+                    <Label fx:id="noDataLabel" style="-fx-text-fill: #777; -fx-font-size: 14px; -fx-padding: 20 0 0 0;" text="Select a ward to view e-waste centres." visible="true" />
+                </VBox>
+            </VBox>
+
+            <!-- RIGHT SIDE (Map View Section) -->
+            <VBox alignment="TOP_CENTER" spacing="12" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8,0,0,2);">
+
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: green;" text="Map View" />
+
+                <WebView fx:id="mapView" prefHeight="300" prefWidth="350" style="-fx-background-color: #eaf1ea; -fx-background-radius: 10;                 -fx-border-color: #cfded0; -fx-border-radius: 10;" />
+
+                <Label fx:id="centreNameLabel" style="-fx-text-fill: #333; -fx-font-size: 13px;" text="Centre Name: —" />
+                <Label fx:id="wardNameLabel" style="-fx-text-fill: #333; -fx-font-size: 13px;" text="Ward Name: —" />
+                <Label fx:id="placeLabel" style="-fx-text-fill: #333; -fx-font-size: 13px;" text="Place: —" />
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- ==================== FOOTER ==================== -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="10" style="-fx-background-color: #1f4c44; -fx-padding: 10;">
+            <Hyperlink style="-fx-text-fill: white; -fx-font-size: 13px;" text="Privacy Policy" />
+            <Label style="-fx-text-fill: white;" text="|" />
+            <Hyperlink style="-fx-text-fill: white; -fx-font-size: 13px;" text="Support" />
+            <Label style="-fx-text-fill: white;" text="|" />
+            <Hyperlink style="-fx-text-fill: white; -fx-font-size: 13px;" text="Contact Info" />
+        </HBox>
+    </bottom>
+</BorderPane>

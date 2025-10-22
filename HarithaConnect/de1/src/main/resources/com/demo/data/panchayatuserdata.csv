@@ -1,4 +1,3 @@
 panchayatId,password,fullName,designation,email,mobile,officeAddress,panchayatName
-panch1,pan123,Arjun Nair,Panchayat Secretary,arjun@mail.com,9998887776,Greenfield Office,Greenfield
+123,123,Arjun Nair,Panchayat Secretary,arjun@mail.com,9998887776,Greenfield Office,Greenfield
 panch2,pan456,Rekha Devi,Panchayat Officer,rekha@mail.com,9998887777,Sunrise Office,Sunrise
-123,123

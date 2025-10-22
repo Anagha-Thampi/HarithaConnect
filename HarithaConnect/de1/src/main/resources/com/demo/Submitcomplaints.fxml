@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0"  style="-fx-background-color: #f5f9f6;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.controllers.SubmitComplaintsController">
+
+    <!-- ========== TOP HEADER ========== -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white;">
+            <padding>
+                <Insets bottom="15" left="15" right="15" top="15" />
+            </padding>
+
+            <ImageView fitHeight="35" fitWidth="35" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@logo.png" />
+                </image>
+            </ImageView>
+
+            <Label prefHeight="32.0" prefWidth="209.0" style="-fx-text-fill: #2e7d32; -fx-font-size: 22px; -fx-font-weight: bold;" text="HarithaConnect" textFill="#49ff83" />
+
+            <Pane HBox.hgrow="ALWAYS">
+            <children>
+      
+                  <Button layoutX="581.0" layoutY="-1.0" onAction="#handleBackButton" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #ffffff; -fx-text-fill: #1e5631; -fx-font-weight: bold;                            -fx-background-radius: 20; -fx-padding: 6 18 6 18;" text="← Back " />
+            </children></Pane>
+         <ImageView fitHeight="35" fitWidth="35" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@profile.png" />
+            </image>
+         </ImageView>
+        </HBox>
+    </top>
+
+    <!-- ========== CENTER CONTENT ========== -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="15" style="-fx-background-color: #e6f2e6;">
+            <padding>
+                <Insets bottom="30" left="40" right="40" top="30" />
+            </padding>
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2f5d50;" text="📋 Submitted Complaints" />
+
+            <!-- Scrollable complaints section -->
+            <ScrollPane fitToWidth="true" prefHeight="500" style="-fx-background: transparent; -fx-background-color: white;">
+                <content>
+                    <VBox fx:id="complaintsContainer" alignment="TOP_CENTER" spacing="15">
+                        <padding>
+                            <Insets bottom="10" left="10" right="10" top="10" />
+                        </padding>
+
+                        <!-- Placeholder shown when no complaints exist -->
+                        <Label fx:id="noComplaintsLabel" style="-fx-text-fill: #6b6b6b; -fx-font-size: 16px; -fx-font-style: italic;" text="No complaints submitted yet." visible="true" />
+                    </VBox>
+                </content>
+            </ScrollPane>
+
+        </VBox>
+    </center>
+
+    <!-- ========== FOOTER ========== -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="20" style="-fx-background-color: #1e5631;">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+
+            <Label style="-fx-text-fill: white;" text="Privacy Policy" />
+            <Label style="-fx-text-fill: white;" text="|" />
+            <Label style="-fx-text-fill: white;" text="Support" />
+            <Label style="-fx-text-fill: white;" text="|" />
+            <Label style="-fx-text-fill: white;" text="Contact Info" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

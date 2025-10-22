@@ -1,6 +1,11 @@
 package com.demo.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.collections.*;
 import java.io.*;
@@ -9,6 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.demo.Session;
+import javafx.stage.Stage;
 
 public class CleanestStreetController {
 
@@ -161,6 +167,20 @@ public class CleanestStreetController {
         public int getCleanedPercentage() { return cleanedPercentage; }
         public int getRank() { return rank; }
         public void setRank(int rank) { this.rank = rank; }
+    }
+    @FXML
+    private void handleBackAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/LocalDash.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Local Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Unable to go back to dashboard.");
+        }
     }
 }
 

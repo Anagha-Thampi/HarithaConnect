@@ -14,12 +14,18 @@ public class LocalDashController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-            Stage stage = (Stage) (root.getScene() == null
-                    ? Stage.getWindows().stream().filter(w -> w.isShowing()).findFirst().get()
-                    : root.getScene().getWindow());
-            stage.setScene(new Scene(root));
-            stage.setTitle(title);
-            stage.show();
+
+            // Find the currently open stage
+            Stage stage = (Stage) Stage.getWindows().stream()
+                    .filter(w -> w.isShowing())
+                    .findFirst()
+                    .orElse(null);
+
+            if (stage != null) {
+                stage.setScene(new Scene(root));
+                stage.setTitle(title);
+                stage.show();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +48,7 @@ public class LocalDashController {
 
     @FXML
     private void goToEwaste() {
-        loadPage("/com/demo/Ewaste.fxml", "Nearby E-Waste Centres");
+        loadPage("/com/demo/Ewastecentres.fxml", "Nearby E-Waste Centres");
     }
 
     @FXML

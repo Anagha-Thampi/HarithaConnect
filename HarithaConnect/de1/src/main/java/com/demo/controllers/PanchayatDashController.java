@@ -25,7 +25,7 @@ public class PanchayatDashController {
 
     @FXML
     private void handleViewComplaints() {
-        showAlert("Complaints", "This will open the complaints review page.");
+        loadPage("/com/demo/Submitcomplaints.fxml", "Review Complaints");
         // TODO: Load Complaints Page
     }
 

@@ -1,0 +1,31 @@
+WardNo,EwasteCentreName,WardName,Place,PhoneNumber,ActiveTime,CurrentlyActive,Latitude,Longitude
+1,GreenCycle E-Waste Depot,Ward 1,Near Town Hall,9876543210,9:00 AM - 5:30 PM,Active,10.1256,76.4567
+1,SmartBin Collection Centre,Ward 1,Opposite Post Office,9123456780,10:00 AM - 6:00 PM,Closed Today,10.1289,76.4590
+1,TechWaste Drop Zone,Ward 1,Next to Green Park,9823456712,8:30 AM - 4:30 PM,Active,10.1305,76.4532
+2,EcoHub Recycling Point,Ward 2,Bus Stand Road,9812345670,9:00 AM - 5:00 PM,Active,10.1456,76.4720
+2,CleanTech E-Waste Centre,Ward 2,Near Community Market,9856789023,10:00 AM - 6:00 PM,Closed Today,10.1490,76.4754
+2,Digital Recycle Hub,Ward 2,Behind Govt School,9998877766,9:30 AM - 6:00 PM,Active,10.1423,76.4689
+3,ReGreen Tech Disposal,Ward 3,Opposite City Library,9988123456,9:00 AM - 5:00 PM,Closed Today,10.1623,76.4890
+3,EcoBin Digital Waste Hub,Ward 3,Next to Fire Station,9797543210,9:00 AM - 5:30 PM,Active,10.1654,76.4832
+3,SmartCycle Depot,Ward 3,Behind Govt Hospital,9812234578,8:30 AM - 4:00 PM,Active,10.1687,76.4861
+4,Green Earth Facility,Ward 4,Near Market Road,9876543210,9:00 AM - 5:30 PM,Active,10.1234,76.4567
+4,Urban Recycle Spot,Ward 4,Next to Shopping Complex,9898989898,10:00 AM - 6:30 PM,Closed Today,10.1265,76.4589
+4,RenewTech E-Waste Hub,Ward 4,Opposite City Mall,9787654321,9:00 AM - 6:00 PM,Active,10.1289,76.4611
+5,E-Waste EcoDrop,Ward 5,Opposite Metro Station,9988776655,9:30 AM - 6:00 PM,Active,10.1823,76.4789
+5,ReLink Recycling Centre,Ward 5,Near Police Station,9944332211,8:30 AM - 4:30 PM,Closed Today,10.1845,76.4802
+5,TechGreen Disposal Hub,Ward 5,Next to Railway Gate,9966554433,9:00 AM - 5:30 PM,Active,10.1868,76.4821
+6,SmartWaste Management,Ward 6,Opposite Central Park,9891234567,9:00 AM - 6:00 PM,Closed Today,10.1923,76.4890
+6,EcoDrop Station,Ward 6,Near College Road,9789012345,10:00 AM - 5:30 PM,Active,10.1945,76.4875
+6,TechCycle Centre,Ward 6,Next to IT Park,9678901234,8:30 AM - 4:30 PM,Active,10.1967,76.4903
+7,EcoBin Collection Point,Ward 7,Behind Community Hall,9856789023,10:00 AM - 6:30 PM,Active,10.1456,76.4678
+7,ReGreen Facility,Ward 7,Opposite Govt Hospital,9845123789,9:00 AM - 5:00 PM,Closed Today,10.1478,76.4650
+7,GreenFuture Depot,Ward 7,Next to Bus Depot,9871236540,9:30 AM - 6:00 PM,Active,10.1499,76.4682
+8,CleanTech Recovery Centre,Ward 8,Near River Side,9934567890,8:30 AM - 4:30 PM,Active,10.1587,76.4712
+8,Urban Waste Point,Ward 8,Next to Stadium,9912345678,10:00 AM - 6:00 PM,Closed Today,10.1609,76.4744
+8,EcoCollect Hub,Ward 8,Opposite Garden View,9923456781,9:00 AM - 5:00 PM,Active,10.1621,76.4729
+9,Smart Waste Disposal,Ward 9,Next to School Road,9811112233,8:30 AM - 4:30 PM,Active,10.1701,76.4830
+9,GreenDrop Centre,Ward 9,Behind Shopping Arcade,9822223344,9:00 AM - 6:00 PM,Closed Today,10.1723,76.4812
+9,EcoSmart Hub,Ward 9,Opposite Taxi Stand,9833334455,10:00 AM - 5:30 PM,Active,10.1750,76.4845
+10,ReWaste Depot,Ward 10,Near Main Junction,9844445566,9:00 AM - 6:00 PM,Active,10.1833,76.4921
+10,TechRenew Drop Point,Ward 10,Next to Govt Office,9855556677,10:00 AM - 6:30 PM,Closed Today,10.1856,76.4950
+10,UrbanGreen E-Waste Hub,Ward 10,Opposite Park Lane,9866667788,8:30 AM - 4:30 PM,Active,10.1878,76.4934

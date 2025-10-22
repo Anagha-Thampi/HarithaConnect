@@ -201,9 +201,12 @@ public class SchedulePickupController {
             List<String> updated = new ArrayList<>();
             updated.add(lines.get(0)); // header
 
+            String assignedWorker = ""; // <-- to store the worker username
+
             for (int i = 1; i < lines.size(); i++) {
                 String[] parts = lines.get(i).split(",");
                 if (parts[0].equals(selectedSlotId)) {
+                    assignedWorker = parts[1]; // <-- get the worker username
                     int capacity = Integer.parseInt(parts[4]) - 1;
                     parts[4] = String.valueOf(Math.max(0, capacity));
                     if (capacity <= 0) parts[5] = "false";
@@ -226,7 +229,7 @@ public class SchedulePickupController {
                 String pickupId = UUID.randomUUID().toString();
                 String now = java.time.LocalDateTime.now().toString();
                 String wasteType = "Mixed";
-                bw.write(String.join(",", pickupId, username, wasteType, selectedSlotId, selectedCoordinates, "Pending", "", now));
+                bw.write(String.join(",", pickupId, username, wasteType, selectedSlotId, selectedCoordinates, "Pending", assignedWorker, now));
                 bw.newLine();
             }
 
@@ -241,6 +244,7 @@ public class SchedulePickupController {
             showAlert("Error", "Failed to confirm pickup.");
         }
     }
+
 
 
     private void loadScheduledPickups() {

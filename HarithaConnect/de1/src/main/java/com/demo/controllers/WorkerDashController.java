@@ -39,7 +39,7 @@ public class WorkerDashController {
 
     @FXML
     private void handleViewBooked(ActionEvent event) {
-        loadPage("/com/demo/cleanest.fxml", "Leaderboard",event);
+        loadPage("/com/demo/viewBookedPickups.fxml", "Booked",event);
     }
 
     // --- Utility Method ---

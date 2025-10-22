@@ -12,6 +12,19 @@ import java.util.stream.Collectors;
 public class LocalUser extends User {
     // UserBase is a small helper abstract class below (keeps CSV login/register). If you used previous User class,
     // just adapt the constructor and CSV helpers accordingly.
+    private String username, name, mobile, ward, address;
+    public LocalUser(String username, String name, String mobile, String ward, String address) {
+        this.username = username;
+        this.name = name;
+        this.mobile = mobile;
+        this.ward = ward;
+        this.address = address;
+    }
+    public String getName() { return name; }
+    public String getMobile() { return mobile; }
+    public String getWard() { return ward; }
+    public String getAddress() { return address; }
+
     public LocalUser(String username, String password) {
         super(username, password);
     }
@@ -58,7 +71,7 @@ public class LocalUser extends User {
 
     public List<EWasteCenter> findNearbyEWasteCenters(boolean govtApproved, boolean openNow) {
         List<EWasteCenter> out = new ArrayList<>();
-        for (String[] row : DataManager.readCsv("ewaste_centers.csv")) {
+        for (String[] row : DataManager.readCsv("ewaste.csv")) {
             // centerId,name,location,isGovtApproved,isOpenNow,acceptedTypes
             if (row.length < 6) continue;
             boolean isGovt = Boolean.parseBoolean(row[3]);

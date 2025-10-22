@@ -43,7 +43,7 @@
             <Button onAction="#goHome" styleClass="nav-button" text="Home" />
             <Button onAction="#goToAbout" styleClass="nav-button" text="About" />
             <Button onAction="#goToLogin" styleClass="nav-button" text="Login" />
-            <Button onAction="#goToAbout" styleClass="nav-button" text="Contact" />
+            <Button onAction="#goToContact" styleClass="nav-button" text="Contact" />
             <Button onAction="#goToRegister" styleClass="get-started-button" text="Get Started" />
         </HBox>
     </top>
