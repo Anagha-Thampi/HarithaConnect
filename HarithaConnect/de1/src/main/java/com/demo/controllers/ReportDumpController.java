@@ -30,7 +30,6 @@ public class ReportDumpController {
     @FXML private WebView mapView;
 
     private final String REPORTS_CSV = "src/main/resources/com/demo/data/dump_reports.csv";
-    private final String LOCALUSER_CSV = "src/main/resources/com/demo/data/localuserdata.csv";
     private final ObservableList<DumpReport> userReports = FXCollections.observableArrayList();
 
     @FXML

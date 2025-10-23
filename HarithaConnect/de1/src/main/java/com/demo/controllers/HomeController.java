@@ -45,7 +45,7 @@ public class HomeController {
     @FXML
     private void goToContact() throws Exception {
         System.out.println("Home button clicked!");
-        //loadPage("/com/demo/Registration.fxml", "Register");
+        loadPage("/com/demo/contact.fxml", "Register");
     }
 
     @FXML

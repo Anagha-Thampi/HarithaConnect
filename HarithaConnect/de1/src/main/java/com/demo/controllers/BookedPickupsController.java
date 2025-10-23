@@ -209,26 +209,6 @@ public class BookedPickupsController {
     }
 
 
-    private void loadMap(double lat, double lon, String name) {
-        String html = """
-            <html>
-            <head>
-              <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-              <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-            </head>
-            <body>
-              <div id="map" style="width:100%%; height:100%%;"></div>
-              <script>
-                var map = L.map('map').setView([%s, %s], 16);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19}).addTo(map);
-                L.marker([%s, %s]).addTo(map).bindPopup('<b>%s</b>').openPopup();
-              </script>
-            </body>
-            </html>
-        """.formatted(lat, lon, lat, lon, name);
-
-        mapView.getEngine().loadContent(html);
-    }
     private void loadMap(String latStr, String lonStr, String name) {
         try {
             double lat = Double.parseDouble(latStr);
@@ -300,9 +280,10 @@ public class BookedPickupsController {
     }
 
     // Navigation
+    @FXML
     private void goBack() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/WorkerDash.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/WrokerDash.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -346,19 +327,5 @@ public class BookedPickupsController {
         }
     }
 
-    /*private static class LocalUser {
-        private String username, name, mobile, ward, address;
-        public LocalUser(String username, String name, String mobile, String ward, String address) {
-            this.username = username;
-            this.name = name;
-            this.mobile = mobile;
-            this.ward = ward;
-            this.address = address;
-        }
-        public String getUsername() { return username; }
-        public String getName() { return name; }
-        public String getMobile() { return mobile; }
-        public String getWard() { return ward; }
-        public String getAddress() { return address; }
-    }*/
+
 }

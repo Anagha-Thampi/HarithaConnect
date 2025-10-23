@@ -1,6 +1,7 @@
 package com.demo.controllers;
 
 import com.demo.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -140,45 +141,59 @@ public class SchedulePickupController {
         WebEngine engine = mapView.getEngine();
 
         String html = """
-        <html>
-        <head>
-          <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-          <link rel='stylesheet' href='https://unpkg.com/leaflet/dist/leaflet.css'/>
-          <script src='https://unpkg.com/leaflet/dist/leaflet.js'></script>
-        </head>
-        <body>
-          <div id='map' style='width:100%;height:300px;'></div>
-          <script>
-            var map = L.map('map').setView([10.8505, 76.2711], 8);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19
-            }).addTo(map);
-            var marker;
-            map.on('click', function(e) {
-                if (marker) map.removeLayer(marker);
-                marker = L.marker(e.latlng).addTo(map);
-                var coords = e.latlng.lat.toFixed(5) + "," + e.latlng.lng.toFixed(5);
-                if (window.java && window.java.updateCoords) {
-                    window.java.updateCoords(coords);
-                } else {
-                    alert("Java bridge not connected!");
-                }
-            });
-          </script>
-        </body>
-        </html>
+    <html>
+    <head>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <link rel='stylesheet' href='https://unpkg.com/leaflet/dist/leaflet.css'/>
+      <script src='https://unpkg.com/leaflet/dist/leaflet.js'></script>
+      <style>
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        #map { width: 100%; height: 100%; }
+      </style>
+    </head>
+    <body>
+      <div id='map'></div>
+      <script>
+        var map = L.map('map', { zoomControl: true }).setView([10.8505, 76.2711], 9);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var marker;
+        map.on('click', function(e) {
+            if (marker) map.removeLayer(marker);
+            marker = L.marker(e.latlng).addTo(map);
+            var coords = e.latlng.lat.toFixed(5) + "," + e.latlng.lng.toFixed(5);
+            if (window.java && window.java.updateCoords) {
+                window.java.updateCoords(coords);
+            } else {
+                console.log("Java bridge not connected!");
+            }
+        });
+
+        // Smooth interaction tweaks
+        map.scrollWheelZoom.enable();
+        map.invalidateSize();
+      </script>
+    </body>
+    </html>
     """;
 
         engine.loadContent(html);
+        Platform.runLater(() -> {
+            WebEngine engine1 = mapView.getEngine();
+            engine1.executeScript("setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 500);");
+        });
 
         engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
             if (newState == javafx.concurrent.Worker.State.SUCCEEDED) {
                 try {
-                    @SuppressWarnings("removal")
                     netscape.javascript.JSObject window =
                             (netscape.javascript.JSObject) engine.executeScript("window");
                     window.setMember("java", new MapBridge(this));
                     System.out.println("✅ MapBridge connected successfully!");
+                    engine.executeScript("setTimeout(() => map.invalidateSize(), 500);");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -262,20 +277,49 @@ public class SchedulePickupController {
 
         try (BufferedReader br = new BufferedReader(new FileReader(pickupPath.toFile()))) {
             String line;
-            br.readLine();
+            br.readLine(); // skip header
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 8 && parts[1].equals(username)) {
-                    Label lbl = new Label("Pickup ID: " + parts[0] + " | Status: " + parts[6]);
-                    lbl.setPadding(new Insets(5));
-                    lbl.setStyle("-fx-background-color: #e0ffe0; -fx-border-color: #a5d6a7;");
-                    scheduledList.getChildren().add(lbl);
+                    String pickupId = parts[0];
+                    String status = parts[6];
+                    String createdAt = parts[8];
+
+                    // ---- Safe split for date/time ----
+                    String datePart = createdAt;
+                    String timePart = "";
+                    if (createdAt.contains("T")) {
+                        String[] dateTime = createdAt.split("T");
+                        datePart = dateTime[0];
+                        if (dateTime.length > 1 && dateTime[1].length() >= 5) {
+                            timePart = dateTime[1].substring(0, 5);
+                        }
+                    }
+
+                    VBox card = new VBox(5);
+                    card.setPadding(new Insets(10));
+                    card.setStyle("-fx-background-color: #f0fff0; -fx-border-color: #a5d6a7; -fx-border-radius: 8; -fx-background-radius: 8;");
+
+                    Label idLabel = new Label("Pickup ID: " + pickupId);
+                    idLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
+
+                    Label dateLabel = new Label("Scheduled on: " + datePart + (timePart.isEmpty() ? "" : " at " + timePart));
+                    dateLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #555;");
+
+                    Label statusLabel = new Label("Status: " + status);
+                    String color = status.equalsIgnoreCase("Pending") ? "#ffcc80" : "#a5d6a7";
+                    statusLabel.setStyle("-fx-background-color: " + color + "; -fx-padding: 3 6; -fx-background-radius: 5;");
+
+                    card.getChildren().addAll(idLabel, dateLabel, statusLabel);
+                    scheduledList.getChildren().add(card);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
     @FXML
     private void onBackButtonClick() {
         try {
