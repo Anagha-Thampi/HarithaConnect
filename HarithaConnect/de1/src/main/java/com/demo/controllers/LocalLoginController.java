@@ -37,13 +37,14 @@ public class LocalLoginController {
 
         if (user.login(username, password)) {
             System.out.println("Local user logged in: " + user.getUsername());
-            Session.setCurrentUser(user); // ✅ Store the full LocalUser object in session
+            Session.setCurrentUser(user);
+
             loadPage("/com/demo/LocalDash.fxml", "Local Dashboard");
         } else {
             showAlert("Error", "Invalid credentials for Local User.");
         }
-
     }
+
 
     // Navigate to the Register Page
     @FXML

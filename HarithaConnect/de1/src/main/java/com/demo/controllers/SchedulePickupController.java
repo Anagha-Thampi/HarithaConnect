@@ -2,11 +2,16 @@ package com.demo.controllers;
 
 import com.demo.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.geometry.Insets;
+import javafx.stage.Stage;
+
 import java.io.*;
 import java.nio.file.*;
 import java.time.LocalDate;
@@ -24,7 +29,7 @@ public class SchedulePickupController {
     @FXML private VBox mapSection;
     @FXML private WebView mapView;
     @FXML private Label selectedLocationLabel;
-
+    @FXML private Button backButton;
     private String selectedSlotId = null;
     private String selectedCoordinates = null;
 
@@ -271,7 +276,18 @@ public class SchedulePickupController {
             e.printStackTrace();
         }
     }
-
+    @FXML
+    private void onBackButtonClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/LocalDash.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

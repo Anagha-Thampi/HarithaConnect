@@ -22,9 +22,11 @@ public class LocalRegistrationController {
     @FXML private TextField addressField;
     @FXML private TextField mobileField;
     @FXML private TextField WardField;
+    @FXML private TextField PanchayatField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private PasswordField confirmPasswordField;
+
 
     private final String CSV_PATH = "src/main/resources/com/demo/data/localuserdata.csv";
 
@@ -39,10 +41,11 @@ public class LocalRegistrationController {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
         String ward=WardField.getText().trim();
+        String panchayat=PanchayatField.getText().trim();
 
         // Validation
         if (houseNumber.isEmpty() || name.isEmpty() || username.isEmpty() ||
-                address.isEmpty() || ward.isEmpty()||mobile.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                address.isEmpty() || ward.isEmpty()||panchayat.isEmpty()||mobile.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Missing Fields", "Please fill in all required fields.");
             return;
         }
@@ -84,8 +87,8 @@ public class LocalRegistrationController {
                 if (!fileExists) {
                     writer.write("Username,Password,HouseNumber,FullName,Address,Mobile,Email,Ward\n");
                 }
-                writer.write(String.format("%s,%s,%s,%s,%s,%s,%s%s",
-                        username, password, houseNumber, name, address, mobile, email,ward,System.lineSeparator()));
+                writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s%s",
+                        username, password, houseNumber, name, address, mobile, email,ward,panchayat,System.lineSeparator()));
             }
 
             // Show alert and redirect to login

@@ -5,29 +5,26 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
-/**
- * Local user functionality: select waste type, schedule pickup, find e-waste centers,
- * report dumps, view heatmap, badge retrieval, submit complaints.
- */
 public class LocalUser extends User {
-    // UserBase is a small helper abstract class below (keeps CSV login/register). If you used previous User class,
-    // just adapt the constructor and CSV helpers accordingly.
-    private String username, name, mobile, ward, address;
+    private String name, mobile, ward, address;
+
     public LocalUser(String username, String name, String mobile, String ward, String address) {
-        this.username = username;
+        super(username, null); // ✅ initialize parent field
         this.name = name;
         this.mobile = mobile;
         this.ward = ward;
         this.address = address;
+    }
+
+    public LocalUser(String username, String password) {
+        super(username, password);
     }
     public String getName() { return name; }
     public String getMobile() { return mobile; }
     public String getWard() { return ward; }
     public String getAddress() { return address; }
 
-    public LocalUser(String username, String password) {
-        super(username, password);
-    }
+
     @Override
     public String getDataFileName() {
         return "localuserdata.csv";

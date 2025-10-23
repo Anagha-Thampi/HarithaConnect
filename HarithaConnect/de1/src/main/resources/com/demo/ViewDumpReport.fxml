@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.harithaconnect.controllers.RealTimeDumpReportsController"
+            prefWidth="900" prefHeight="700"
+            style="-fx-background-color: #E8F3E6;">
+
+    <!-- Header Bar -->
+    <HBox spacing="10" alignment="CENTER_LEFT"
+          layoutX="0" layoutY="0" prefHeight="60" prefWidth="900"
+          style="-fx-background-color: white; -fx-padding: 10 20;">
+        <Label text="🌿 Haritha Connect"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;" />
+    </HBox>
+
+    <!-- Main Content Container -->
+    <VBox spacing="15" layoutX="40" layoutY="80" prefWidth="820">
+        <!-- Page Title + Filter -->
+        <HBox spacing="20" alignment="CENTER_LEFT">
+            <Label text="Real-Time Dump Reports"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1E4822;" />
+            <Pane HBox.hgrow="ALWAYS"/>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Label text="Filter by Status:" style="-fx-font-size: 14px;"/>
+                <ChoiceBox fx:id="statusFilter" prefWidth="200"
+                           style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #CCCCCC;"/>
+            </HBox>
+        </HBox>
+
+        <!-- Scrollable Horizontal Reports Area -->
+        <ScrollPane fitToWidth="true" prefHeight="580"
+                    style="-fx-background: transparent; -fx-border-color: transparent;" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER">
+            <content>
+                <HBox fx:id="reportsContainer" spacing="15" style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <!-- Report Cards will be dynamically generated from CSV in controller -->
+                </HBox>
+            </content>
+        </ScrollPane>
+    </VBox>
+
+</AnchorPane>

@@ -27,7 +27,7 @@ public class AddTimeSlotsController {
     @FXML private Label statusLabel;
     @FXML private VBox slotList;
     @FXML private Button addSlotButton;
-    @FXML private Button backButton;
+    @FXML private Button backButton,logoutButton;
 
     private static final String TIMESLOT_FILE = "src/main/resources/com/demo/data/timeslots.csv";
 
@@ -177,6 +177,39 @@ public class AddTimeSlotsController {
         } catch (IOException e) {
             e.printStackTrace();
             showStatus("Error loading dashboard.", "red");
+        }
+    }
+    @FXML
+    private void onBackButtonClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/LocalDash.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onLogoutButtonClick() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout Confirmation");
+        alert.setHeaderText("Are you sure you want to logout?");
+        alert.setContentText("Your unsaved progress will be lost.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                Session.clear();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/LoginSelection.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

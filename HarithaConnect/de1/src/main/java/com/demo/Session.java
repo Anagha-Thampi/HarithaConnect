@@ -4,6 +4,7 @@ public class Session {
 
     private static Object currentUser; // can be LocalUser, PanchayatOfficial, or KudumbasreeWorker
 
+    
     // ---- SET USER ----
     public static void setCurrentUser(Object user) {
         currentUser = user;

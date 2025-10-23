@@ -1,6 +1,7 @@
 package com.demo.controllers;
 
 import com.demo.PanchayatOfficial;
+import com.demo.Session;
 import com.demo.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,6 +42,7 @@ public class PanchayatLoginController {
 
         if (user.login(username, password)) {
             System.out.println("Panchayat official logged in: " + user.getUsername());
+            Session.setCurrentUser(user);
             loadPage("/com/demo/PanchayatDash.fxml", "Panchayat Dashboard");
         } else {
             showAlert("Error", "Invalid credentials for Panchayat Official.");

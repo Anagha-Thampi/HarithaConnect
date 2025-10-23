@@ -1,18 +1,23 @@
 package com.demo;
 
-import com.demo.controllers.SchedulePickupController;
-
 public class MapBridge {
-    private final SchedulePickupController controller;
+    private final Object controller; // <-- accept any controller
 
-    public MapBridge(SchedulePickupController controller) {
+    public MapBridge(Object controller) {
         this.controller = controller;
     }
 
-    // This is what JavaScript calls
+    // Called by JavaScript when a map click happens
     public void updateCoords(String coords) {
         System.out.println("JS -> Java: received " + coords);
-        controller.updateCoordinates(coords);
+
+        try {
+            controller.getClass().getMethod("updateCoordinates", String.class)
+                    .invoke(controller, coords);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
+
 

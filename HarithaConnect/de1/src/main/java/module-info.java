@@ -15,6 +15,8 @@ module com.demo {
     requires jdk.jsobject;
     requires java.desktop;
 
+
+
     opens com.demo.controllers to javafx.fxml;
 
 

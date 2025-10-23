@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class KudumbasreeWorker extends User {
-
+    private String name, mobile, email, address, ward;
     public KudumbasreeWorker(String username, String password) {
         super(username, password);
     }
@@ -15,6 +15,9 @@ public class KudumbasreeWorker extends User {
     }
     public String getWorkerId() {
         return username;
+    }
+    public String getWard() {
+        return ward;
     }
 
     public List<DumpReport> viewRealTimeDumpReports() {
@@ -79,4 +82,5 @@ public class KudumbasreeWorker extends User {
         if (changed) DataManager.overwriteCsv("pickups.csv", rows);
         return changed;
     }
+
 }

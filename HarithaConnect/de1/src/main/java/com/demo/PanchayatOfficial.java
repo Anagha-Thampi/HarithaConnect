@@ -4,13 +4,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class PanchayatOfficial extends User {
+    private String fullName, designation, email, mobile, officeAddress, panchayatName;
     public PanchayatOfficial(String username, String password) {
         super(username, password);
     }
     public String getPanchayatId() {
         return username;
     }
-
+    public String getPanchayatName() {
+        return panchayatName;
+    }
     @Override
     public String getDataFileName() {
         return "panchayatuserdata.csv";

@@ -170,16 +170,30 @@ public class CleanestStreetController {
     }
     @FXML
     private void handleBackAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/LocalDash.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Local Dashboard");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Error", "Unable to go back to dashboard.");
+        if (Session.getCurrentUser() instanceof com.demo.LocalUser) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/LocalDash.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Local Dashboard");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Error", "Unable to go back to dashboard.");
+            }
+        } else if (Session.getCurrentUser() instanceof com.demo.PanchayatOfficial) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/demo/PanchayatDash.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Local Dashboard");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Error", "Unable to go back to dashboard.");
+            }
         }
     }
 }
